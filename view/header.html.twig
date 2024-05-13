@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="view/web/css/style.css" media="screen"/>
+		<link rel="shortcut icon" href="view/web/img/favicon.ico"/>
+		<title>MVC with Twig</title>
+	</head>
+	<body>
+		<header>
+			<p>Ceci est notre header</p>
+			<a href="home">
+				<button>Accueil</button>
+			</a>
+			<a href="creer">
+				<button>Créer</button>
+			</a>
+			{% if session.user is defined %}
+				Bonjour
+				{{session.user}}
+			{% else %}
+				L'utilisateur n'est pas connecté
+			{% endif %}
+
+		</header><hr></body>
+</html>

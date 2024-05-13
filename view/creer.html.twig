@@ -1,0 +1,28 @@
+{% if message is null %}
+	<div>
+		<form action="creer" method="post">
+			<div class="container">
+				<label for="title">
+					<b>Titre</b>
+				</label>
+				<input type="text" placeholder="Enter Title" name="title" required>
+
+				<label for="description">
+					<b>Description</b>
+				</label>
+				<input type="text" placeholder="Enter Description" name="description" required>
+				<button type="submit">Créer Offre</button>
+			</div>
+		</form>
+	</div>
+{% else %}
+	<div>
+		<p>{{message}}
+			:</p><br>
+		{% if offre is defined %}
+			{{offre.getTitle}}
+			:
+			{{offre.getDescription}}
+		{% endif %}
+	</div>
+{% endif %}
