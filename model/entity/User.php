@@ -4,11 +4,12 @@ namespace Model\entity;
 
 class User
 {
+    private $id;
     private $username;
     private $email;
     private $password;
 
-    public function __construct(string $username = "", string $email = "", string  $password = "")
+    public function __construct(int $id, string $username = "", string $email = "", string  $password = "")
     {
         $this->setUsername($username);
         $this->setEmail($email);
