@@ -5,16 +5,12 @@ namespace Model\entity;
 class Role
 {
     private $idRole;
-
-    private $id;
     private $personnage;
     private $acteur;
     private $acteur;
 
+
     public function __construct(int $idRole, string $personnage, Acteur $acteur)
-
-
-    public function __construct(int $id, string $personnage, Acteur $acteur)
     {
         $this->setIdRole($idRole);
         $this->setId($id);
