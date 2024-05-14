@@ -16,7 +16,7 @@ class Acteur
     }
 
     /**
-     * Get the value of id
+     * Get the value of idActeur
      */
     public function getIdActeur()
     {
@@ -24,7 +24,7 @@ class Acteur
     }
 
     /**
-     * Set the value of id
+     * Set the value of idActeur
      *
      * @return  self
      */
