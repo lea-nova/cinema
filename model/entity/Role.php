@@ -2,7 +2,6 @@
 
 namespace Model\entity;
 
-
 class Role
 {
     private $idActeur;
