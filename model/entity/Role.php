@@ -1,10 +1,10 @@
-
 <?php
 
 namespace Model\entity;
 
+use Model\entity\Film;
 
-class Role
+class Role extends Film
 {
     private $idActeur;
     private $idFilm;
@@ -102,4 +102,3 @@ class Role
         return $this;
     }
 }
-
