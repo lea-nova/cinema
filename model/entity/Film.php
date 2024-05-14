@@ -2,42 +2,23 @@
 
 namespace Model\entity;
 
-/**
- * Description of Offre
- *
- */
-class Offre
+
+class Film
 {
 
     private $id;
-    private $title;
-    private $description;
+    private $titre;
+    private $realisateur;
+    private $affiche;
+    private $annee;
 
-    public function __construct($id, $title, $description)
+    public function __construct(int $id, string $titre, string $realisateur, string $affiche, string $annee)
     {
         $this->setId($id);
-        $this->setTitle($title);
-        $this->setDescription($description);
-    }
-
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
-
-    public function setDescription($description)
-    {
-        $this->description = $description;
+        $this->setTitre($titre);
+        $this->setRealisateur($realisateur);
+        $this->setAffiche($affiche);
+        $this->setAnnee($annee);
     }
 
     /**
@@ -51,13 +32,92 @@ class Offre
     /**
      * Set the value of id
      *
+     * @return  self
      */
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of titre
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * Set the value of titre
+     *
+     * @return  self
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of realisateur
+     */
+    public function getRealisateur()
+    {
+        return $this->realisateur;
+    }
+
+    /**
+     * Set the value of realisateur
+     *
+     * @return  self
+     */
+    public function setRealisateur($realisateur)
+    {
+        $this->realisateur = $realisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of affiche
+     */
+    public function getAffiche()
+    {
+        return $this->affiche;
+    }
+
+    /**
+     * Set the value of affiche
+     *
+     * @return  self
+     */
+    public function setAffiche($affiche)
+    {
+        $this->affiche = $affiche;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of annee
+     */
+    public function getAnnee()
+    {
+        return $this->annee;
+    }
+
+    /**
+     * Set the value of annee
+     *
+     * @return  self
+     */
+    public function setAnnee($annee)
+    {
+        $this->annee = $annee;
+
+        return $this;
     }
 }
-
-<?php 
-
-// Ici il y aura un attribut de type rôle et qui sera propre à la classe.
