@@ -4,17 +4,17 @@ namespace Model\entity;
 
 class Film
 {
-    private $id;
+    private $idFilm;
     private $titre;
     private $realisateur;
     private $affiche;
     private $annee;
     private $role;
 
-    public function __construct(int $id, string $titre, string $realisateur, string $affiche, string $annee, Role $role)
+    public function __construct(int $idFilm, string $titre, string $realisateur, string $affiche, string $annee, Role $role)
 
     {
-        $this->setId($id);
+        $this->setIdFilm($idFilm);
         $this->setTitre($titre);
         $this->setRealisateur($realisateur);
         $this->setAffiche($affiche);
@@ -23,21 +23,21 @@ class Film
     }
 
     /**
-     * Get the value of id
+     * Get the value of idFilm
      */
-    public function getId()
+    public function getIdFilm()
     {
-        return $this->id;
+        return $this->idFilm;
     }
 
     /**
-     * Set the value of id
+     * Set the value of idFilm
      *
      * @return  self
      */
-    public function setId($id)
+    public function setIdFilm($idFilm)
     {
-        $this->id = $id;
+        $this->idFilm = $idFilm;
 
         return $this;
     }
