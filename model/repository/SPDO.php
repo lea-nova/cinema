@@ -9,7 +9,7 @@ class SPDO
 
     private function __construct()
     {
-        $this->PDOInstance = new \PDO("mysql:host=localhost:3306;dbname=cinema", "user", "userweb");
+        $this->PDOInstance = new \PDO("mysql:host=localhost:3306;dbname=cinema", "test", "root");
     }
     public static function getInstance()
     {
