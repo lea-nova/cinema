@@ -4,13 +4,13 @@ namespace Model\entity;
 
 class Acteur
 {
-    private int $id;
+    private int $idActeur;
     private  string $nom;
     private string $prenom;
 
-    public function __construct(int $id, string $nom, string $prenom)
+    public function __construct(int $idActeur, string $nom, string $prenom)
     {
-        $this->setId($id);
+        $this->setIdActeur($idActeur);
         $this->setNom($nom);
         $this->setPrenom($prenom);
     }
@@ -18,9 +18,9 @@ class Acteur
     /**
      * Get the value of id
      */
-    public function getId()
+    public function getIdActeur()
     {
-        return $this->id;
+        return $this->idActeur;
     }
 
     /**
@@ -28,9 +28,9 @@ class Acteur
      *
      * @return  self
      */
-    public function setId($id)
+    public function setIdActeur($idActeur)
     {
-        $this->id = $id;
+        $this->idActeur = $idActeur;
 
         return $this;
     }
