@@ -12,7 +12,7 @@ class Role
 
 
 
-    public function __construct($idActeur, $idFilm, $id, $personnage)
+    public function __construct(int $idActeur, int $idFilm, int $id, string $personnage)
     {
         $this->setIdActeur($idActeur);
         $this->setIdFilm($idFilm);
