@@ -13,7 +13,7 @@ class Film
     private $affiche;
     private $annee;
 
-    public function __construct(int $id, string $titre, string $realisateur, string $affiche, int $annee)
+    public function __construct(int $id, string $titre, string $realisateur, string $affiche, string $annee)
     {
         $this->setId($id);
         $this->setTitre($titre);
