@@ -1,3 +1,4 @@
+
 <?php
 
 if ($_SESSION) {
@@ -5,3 +6,4 @@ if ($_SESSION) {
 } else {
     echo $twig->render('login.html.twig');
 }
+
