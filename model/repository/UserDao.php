@@ -17,7 +17,7 @@ class UserDao extends Dao
         $query->execute();
         $user = array();
         while ($data = $query->fetch()) {
-            $acteurs[] = new User(
+            $user[] = new User(
                 $data["id"],
                 $data["username"],
                 $data["email"],
@@ -40,8 +40,8 @@ class UserDao extends Dao
     //Ajouter un item
     public static function addOne(Object $data): bool
     {
-        $query = self::$bdd->prepare('INSERT INTO utilisateur VALUES (:id, :username, :email, :password)');
-        $value = ['id' => $data->getIdUser(), 'username' => $data->getUsername(), 'email' => $data->getEmail(), 'password' => $data->getPrenom()];
+        $query = 'INSERT INTO utilisateur (username, email, password) VALUES (:username, :email, :password)';
+        $value = ['username' => $data->getUsername(), 'email' => $data->getEmail(), 'password' => $data->getPassword()];
         $insert = self::$bdd->prepare($query);
         return $insert->execute($value);
     }
