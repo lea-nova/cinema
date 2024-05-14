@@ -4,13 +4,14 @@ namespace Model\entity;
 
 class User
 {
-    private $id;
+    private $idUser;
     private $username;
     private $email;
     private $password;
 
-    public function __construct(int $id, string $username = "", string $email = "", string  $password = "")
+    public function __construct(int $idUser, string $username = "", string $email = "", string  $password = "")
     {
+        $this->setIdUser($idUser);
         $this->setUsername($username);
         $this->setEmail($email);
         $this->setPassword($password);
@@ -77,21 +78,21 @@ class User
     }
 
     /**
-     * Get the value of id
+     * Get the value of idUser
      */
-    public function getId()
+    public function getIdUser()
     {
-        return $this->id;
+        return $this->idUser;
     }
 
     /**
-     * Set the value of id
+     * Set the value of idUser
      *
      * @return  self
      */
-    public function setId($id)
+    public function setIdUser($idUser)
     {
-        $this->id = $id;
+        $this->idUser = $idUser;
 
         return $this;
     }
