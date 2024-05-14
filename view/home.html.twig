@@ -1,4 +1,6 @@
 <body>
+	{% if condition %}{% endif %}
+
 	<div class="container mt-5">
 		<div class="row">
 			<div
@@ -93,7 +95,10 @@ myCarousel.next();
 }
 	</script>
 
-	{% for user in user %}{% endfor %}
+	{% for user in user %}
+		{{user.getUsername
+		}}
+	{% endfor %}
 
 
 </body></html>
