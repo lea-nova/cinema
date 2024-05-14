@@ -4,19 +4,24 @@ namespace Model\entity;
 
 class Role
 {
+    private $idRole;
 
     private $id;
     private $personnage;
     private $acteur;
+    private $acteur;
 
+    public function __construct(int $idRole, string $personnage, Acteur $acteur)
 
 
     public function __construct(int $id, string $personnage, Acteur $acteur)
     {
+        $this->setIdRole($idRole);
         $this->setId($id);
         $this->setPersonnage($personnage);
         $this->setActeur($acteur);
     }
+
 
 
     /*
@@ -38,24 +43,35 @@ Set the value of id*
         return $this;
     }
 
+    /**
+     * Get the value of acteur
+     */
+    public function getActeur()
     /*
      
 Get the value of personnage*/
     public function getPersonnage()
     {
-        return $this->personnage;
+        return $this->acteur;
     }
 
+    /**
+     * Set the value of acteur
+     *
+     * @return  self
+     */
+    public function setActeur($acteur)
     /*
      
 Set the value of personnage*
 @return  self*/
     public function setPersonnage($personnage)
     {
-        $this->personnage = $personnage;
+        $this->acteur = $acteur;
 
         return $this;
     }
+}
 
     /**
      * Get the value of acteur
