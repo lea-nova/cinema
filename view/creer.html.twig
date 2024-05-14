@@ -88,3 +88,7 @@
 	</form>
 </div>
 {# endif#}
+
+{% for film in films %}
+{{ film.getTitre }}{{ film.role.getPersonnage }} {{ film.role.acteur.getNom }} {{ film.role.acteur.getPrenom }}
+{% endfor %}
