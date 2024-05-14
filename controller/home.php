@@ -1,12 +1,5 @@
 <?php
 
-use Model\repository\OffreDAO;
-
-//On appelle la fonction getAll()
-// $offreDao = new OffreDAO();
-
-// $offres = $offreDao->getAll();
-
 unset($_SESSION['user']);
 // $_SESSION['user'] = 'vince@afpa.com';
 
