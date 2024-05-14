@@ -18,6 +18,7 @@ class Role
         $this->setIdFilm($idFilm);
         $this->setId($id);
         $this->setPersonnage($personnage);
+        $this->setActeur($acteur);
     }
 
 
