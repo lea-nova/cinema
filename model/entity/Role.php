@@ -102,3 +102,4 @@ class Role
         return $this;
     }
 }
+
