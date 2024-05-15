@@ -1,5 +1,10 @@
 <body>
-	{% if condition %}{% endif %}
+	{% if user%}
+		{{"Bienvenue "}}
+	{% else %}
+		{{"Connectez-vous pour créer un film"}}
+	{% endif %}
+
 
 	<div class="container mt-5">
 		<div class="row">
@@ -14,7 +19,9 @@
 							<div class="row">
 								<div class="col-md-6">
 									<h2>get.titre</h2>
-									<p>Réalisé en "get.annee" par "get.realisateur"</p>
+									<p>Réalisé en
+										{{film.getAnnee}}
+										par "get.realisateur"</p>
 									<p>avec "get.acteur" dans le role de "get.role"</p>
 									<p>avec "get.acteur" dans le role de "get.role"</p>
 									<p>avec "get.acteur" dans le role de "get.role"</p>
