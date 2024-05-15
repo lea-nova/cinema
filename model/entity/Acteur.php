@@ -4,11 +4,11 @@ namespace Model\entity;
 
 class Acteur
 {
-    private int $idActeur;
+    private ?int $idActeur = null;
     private  string $nom;
     private string $prenom;
 
-    public function __construct(int $idActeur, string $nom, string $prenom)
+    public function __construct(?int $idActeur, string $nom, string $prenom)
     {
         $this->setIdActeur($idActeur);
         $this->setNom($nom);

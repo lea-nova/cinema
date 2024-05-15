@@ -23,8 +23,11 @@ $routes = [
     'creer' => './controller/creer.php',
     'delete' => './controller/delete.php',
     'update' => './controller/update.php',
-    'compte' => './controller/compte.php'
+    'compte' => './controller/compte.php',
+    'logout' => './controller/logout.php'
 ];
+
+
 
 $controller = isset($_GET['action']) ?  $_GET['action'] : '/';
 
