@@ -28,7 +28,7 @@ $test = new FilmDao();
 $id = 1;
 $role = new FilmDao();
 $films = $role->getAll();
-var_dump($films);
+// var_dump($films);
 
 // var_dump($role);
 

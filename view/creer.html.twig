@@ -29,11 +29,14 @@
 
 {# If $_SESSION  is defined #}
 {% for film in films %}
-	{{film.getTitre}}
-	{{film.role.acteur.getNom}}
-	{{film.acteur.getPrenom}}
-	<br>
+   {{ film.titre }}
+ 	{% for role in film.roles %}
+        <li>{{ role.personnage }} joué par {{ role.acteur.nom }} {{ role.acteur.prenom }}</li>
+        {% endfor %}
+
 {% endfor %}
+	<br>
+
 <div class="container col-10">
 	<form class="row g-3" method="post" action="creer">
 	<form class="row g-3" method="post" action="creer">

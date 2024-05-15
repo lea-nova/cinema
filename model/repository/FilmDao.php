@@ -13,8 +13,7 @@ class FilmDao extends Dao
 {
     public static function getAll(): array
     {
-
-        $query = self::$bdd->prepare("SELECT * FROM film JOIN role ON role.id_Film=film.id JOIN acteur ON acteur.id = role.id_Acteur");
+        $query = self::$bdd->prepare("SELECT * FROM film JOIN role ON role.id_Film=film.id JOIN acteur ON acteur.id = role.id_Acteur GROUP BY film.id");
         $query->execute();
         $films = array();
         $filmDao = new FilmDao();
@@ -62,37 +61,5 @@ class FilmDao extends Dao
             $roles[] = $role;
         }
         return $roles;
-    }
-
-    public function addRoleToFilm($id)
-    {
-        FilmDao::getAll();
-        FilmDao::getRole($id);
-        foreach (FilmDao::getAll() as $value) {
-            $film = $value->getRole($id);
-        }
-
-        return ($film);
-    }
-
-
-    // Au final il faudrait plutot faire une fonction comme : 
-
-    public function descriptionFilm($id)
-    {
-
-        $film = FilmDao::getOne($id);
-        // et ici on met ce que l'on a mis dans getAll();
-
-    }
-
-    // et une autre pour récupérer le titre ou une partie du titre pour la fonction rechercher :
-
-    public function rechercheTitre()
-    {
-        // et qui utilisera surement la description pour ensuite afficher dans le caroussel. 
-        // par la recherche de film il faut pouvoir afficher tous les films qui ont ce que l'utilisateur a tapé dans la barre de recherche. 
-
-// il faut faire une requête pour SELECT * from titre WHERE titre = :titre etc.... 
     }
 }
