@@ -1,13 +1,14 @@
 <?php
 
+use Model\repository\FilmDao;
+use Model\repository\Role;
+
+//On appelle la fonction getAll()
+$filmDao = new FilmDao();
+$films = $filmDao->getAll();
+
+
+
+
 //On affiche le template Twig correspondant
-
-use Model\repository\UserDao;
-
-$user = null;
-
-
-$userDao = new UserDao();
-$user = $userDao->getAll();
-
-echo $twig->render('home.html.twig', ["user" => $user]);
+echo $twig->render('home.html.twig', ['films' => $films]);
