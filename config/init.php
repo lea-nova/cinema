@@ -13,3 +13,5 @@ $twig = new \Twig\Environment($loader);
 
 
 $twig->addGlobal('session', $_SESSION);
+
+session_destroy();
