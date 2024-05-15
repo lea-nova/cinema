@@ -1,26 +1,31 @@
+<body>
+	{% if user%}
+		{{"Bienvenue git i"}}
+	{% else %}
+		{{"Connectez-vous pour créer un film"}}
+	{% endif %}
 
-	<body>
-		<div class="container mt-5">
-			<div class="row">
-				<div
-					class="col">
-					<!-- Carrousel -->
-					<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-						<div
-							class="carousel-inner">
-							<!-- Première diapositive -->
-							<div class="carousel-item active">
-								<div class="row">
-									<div class="col-md-6">
-										<h2>get.titre</h2>
-										<p>Réalisé en "get.annee" par "get.realisateur"</p>
-										<p>avec "get.acteur" dans le role de "get.role"</p>
-										<p>avec "get.acteur" dans le role de "get.role"</p>
-										<p>avec "get.acteur" dans le role de "get.role"</p>
-									</div>
-									<div class="col-md-6">
-										<img src="view/web/img/matrix.jpg" class="rounded" alt="Image 1">
-									</div>
+
+	<div class="container mt-5">
+		<div class="row">
+			<div
+				class="col">
+				<!-- Carrousel -->
+				<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+					<div
+						class="carousel-inner">
+						<!-- Première diapositive -->
+						<div class="carousel-item active">
+							<div class="row">
+								<div class="col-md-6">
+									<h2>get.titre</h2>
+									<p>Réalisé en
+										{{film.getAnnee}}
+										par "get.realisateur"</p>
+									<p>avec "get.acteur" dans le role de "get.role"</p>
+									<p>avec "get.acteur" dans le role de "get.role"</p>
+									<p>avec "get.acteur" dans le role de "get.role"</p>
+									>>>>>>> jordan
 								</div>
 							</div>
 							<!-- Deuxième diapositive -->
@@ -77,13 +82,13 @@
 			</div>
 		</div>
 
-	<!-- Link Bootstrap JS et jQuery -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+		<!-- Link Bootstrap JS et jQuery -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
-	<!-- JavaScript pour contrôler le carrousel -->
-	<script>
-		var myCarousel = new bootstrap.Carousel(document.getElementById('myCarousel'));
+		<!-- JavaScript pour contrôler le carrousel -->
+		<script>
+			var myCarousel = new bootstrap.Carousel(document.getElementById('myCarousel'));
 
 function prevSlide() {
 myCarousel.prev();
@@ -92,7 +97,11 @@ myCarousel.prev();
 function nextSlide() {
 myCarousel.next();
 }
-	</script>
+		</script>
 
-
+		{% for user in user %}
+			{{user.getUsername
+		}}
+		{% endfor %}
+	</body>
 </body></html>
