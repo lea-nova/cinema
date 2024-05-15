@@ -4,8 +4,6 @@ namespace Model\entity;
 
 class Film
 {
-
-
     private $idFilm;
     private $titre;
     private $realisateur;
@@ -14,8 +12,6 @@ class Film
     private $role;
 
     public function __construct(int $idFilm, string $titre, string $realisateur, string $affiche, string $annee, Role $role)
-
-
     {
         $this->setIdFilm($idFilm);
         $this->setTitre($titre);
