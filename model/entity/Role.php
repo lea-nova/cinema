@@ -16,6 +16,8 @@ class Role
         $this->setActeur($acteur);
     }
 
+
+
     /*
      
 Get the value of id*/
@@ -34,6 +36,7 @@ Set the value of id*
 
         return $this;
     }
+
 
     /*
      

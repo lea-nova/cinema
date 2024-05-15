@@ -8,7 +8,7 @@ class ActeurDao extends Dao
 {
     public static function getAll(): array
     {
-        $query = self::$bdd->prepare(" SELECT * FROM acteur");
+        $query = SPDO::getInstance()->prepare(" SELECT * FROM acteur");
         $query->execute();
         $acteurs = array();
         while ($data = $query->fetch()) {
