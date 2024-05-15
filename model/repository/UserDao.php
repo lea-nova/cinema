@@ -5,7 +5,6 @@ namespace Model\repository;
 use Model\repository\Dao;
 use Model\entity\User;
 
-
 class UserDao extends Dao
 {
 

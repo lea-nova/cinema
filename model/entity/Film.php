@@ -4,10 +4,8 @@ namespace Model\entity;
 
 class Film
 {
-<<<<<<< HEAD
 
-=======
->>>>>>> main
+
     private $idFilm;
     private $titre;
     private $realisateur;
@@ -16,10 +14,8 @@ class Film
     private $role;
 
     public function __construct(int $idFilm, string $titre, string $realisateur, string $affiche, string $annee, Role $role)
-<<<<<<< HEAD
-=======
 
->>>>>>> main
+
     {
         $this->setIdFilm($idFilm);
         $this->setTitre($titre);

@@ -42,4 +42,25 @@ class FilmDao extends Dao
         $data = $query->fetch();
         return new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], new Role($data['id'], $data['personnage'], new Acteur($data['id'], $data['nom'], $data['prenom'])));
     }
+
+
+    // Au final il faudrait plutot faire une fonction comme : 
+
+    public function descriptionFilm($id)
+    {
+
+        $film = FilmDao::getOne($id);
+        // et ici on met ce que l'on a mis dans getAll();
+
+    }
+
+    // et une autre pour récupérer le titre ou une partie du titre pour la fonction rechercher :
+
+    public function rechercheTitre()
+    {
+        // et qui utilisera surement la description pour ensuite afficher dans le caroussel. 
+        // par la recherche de film il faut pouvoir afficher tous les films qui ont ce que l'utilisateur a tapé dans la barre de recherche. 
+
+// il faut faire une requête pour SELECT * from titre WHERE titre = :titre etc.... 
+    }
 }

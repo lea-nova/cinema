@@ -30,6 +30,9 @@ use Model\repository\FilmDao;
 $test = new FilmDao();
 $films = $test->getAll();
 // var_dump($acteurs);
+// $_POST["titre"] = null;
+
+var_dump($_POST);
 
 echo $twig->render('creer.html.twig', [
     "films" => $films

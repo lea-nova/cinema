@@ -29,22 +29,22 @@
 
 {# If $_SESSION  is defined #}
 <div class="container col-10">
-	<form class="row g-3">
+	<form class="row g-3" method="post" action="creer">
 		<div class="col-md-6">
 			<label for="titre" class="form-label">Titre</label>
-			<input type="text" class="form-control" id="titre">
+			<input name="titre" type="text" class="form-control" id="titre">
 		</div>
 		<div class="col-md-6">
 			<label for="annee" class="form-label">Année</label>
-			<input type="text" class="form-control" id="annee">
+			<input name="annee" type="text" class="form-control" id="annee">
 		</div>
 		<div class="col-md-12">
 			<label for="affiche" class="form-label">Affiche</label>
-			<input type="text" class="form-control" id="affiche">
+			<input name="affiche" type="text" class="form-control" id="affiche">
 		</div>
 		<div class="col-md-6">
 			<label for="realisateur" class="form-label">Réalisateur</label>
-			<input type="text" class="form-control" id="realisateur">
+			<input name="realisateur" type="text" class="form-control" id="realisateur">
 		</div>
 		<div class="col-md-6">
 			<label for="genre" class="form-label">Genre</label>
@@ -63,27 +63,25 @@
 		</div>
 		<div class="col-8" >
 			<span>Rôle(s)</span><span> 
-			<button type="submit" class="btn btn-secondary ">Ajouter</button>
+			<input   class="btn btn-secondary " value="Ajouter">
 		</span >
 		</div>
 		<div class="container col-12">
 			<div class="row col-12 mt-4">
-				<form>
 					<div class="form-group col-4">
-						<input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Personnage">
+						<input name="personnage" type="text" class="form-control" placeholder="Personnage">
 					</div>
 					<div class="form-group col-3">
-						<input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nom">
+						<input name="nom" type="text" class="form-control"  placeholder="Nom">
 					</div>
 					<div class="form-group col-3">
-						<input type="text" class="form-control" id="exampleInputPassword1" placeholder="Prenom">
+						<input name="prenom" type="text" class="form-control"  placeholder="Prenom">
 					</div>
 					<button type="delete" class="btn btn-secondary col-1 ">Delete</button>
-				</form>
 			</div>
 		</div>
 		<div class="col-12 d-flex justify-content-center mt-5">
-			<button type="submit" class="btn btn-primary">Creer</button>
+			<button type="submit"  class="btn btn-primary">Creer</button>
 		</div>
 	</form>
 </div>
