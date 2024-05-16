@@ -8,12 +8,11 @@ use Model\entity\Acteur;
 use Model\repository\Dao;
 
 
-
 class FilmDao extends Dao
 {
     public static function getAll(): array
     {
-        $query = self::$bdd->prepare("SELECT * FROM film JOIN role ON role.id_Film=film.id JOIN acteur ON acteur.id = role.id_Acteur GROUP BY film.id");
+        $query = self::$bdd->prepare("SELECT * FROM film JOIN role ON role.id_Film=film.id JOIN acteur ON acteur.id = role.id_Acteur");
         $query->execute();
         $films = array();
         $filmDao = new FilmDao();
@@ -47,9 +46,15 @@ class FilmDao extends Dao
         return  $films[] = new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], $roles[$role]);
     }
 
-    public function addRole()
+    public function addRole($idFilm, $idRole, $personnage)
     {
+        $query = self::$bdd->prepare("INSERT INTO role (id_film, id_acteur, personnage) VALUES (:film_id, :role_id, :personnage)");
+        $query->bindParam(':film_id', $idFilm, \PDO::PARAM_INT);
+        $query->bindParam(':role_id', $idRole, \PDO::PARAM_INT);
+        $query->bindParam(':personnage', $personnage, \PDO::PARAM_STR);
+        return $query->execute();
     }
+
     public function getRole($id): array
     {
         $roles = array();
