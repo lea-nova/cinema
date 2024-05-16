@@ -1,143 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Catalogue de film</title>
-		<link href="view/web/css/style.css" rel="stylesheet" type="text/css"/>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-	</head>
+<body>
+	{% if user%}
+		{{"Bienvenue git i"}}
+	{% else %}
+		{{"Connectez-vous pour créer un film"}}
+	{% endif %}
 
-	<header>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="#">
-					<img src="view/web/img/cinema.png" alt="Logo" width="73" height="61" class="d-inline-block align-text-top">
-				</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item">
-							<a class="nav-link active" href="#accueil">Médiathèque</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#accueil">Accueil</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="./compte.php">Compte</a>
-						</li>
-					</ul>
+	<div class="container mt-5">
+		<div class="row">
+			<div
+				class="col">
 
-					<form class="d-flex">
-						<input class="form-control me-2" type="search" placeholder="Rechercher un film" aria-label="Search">
-						<button class="btn btn-success w-75" type="submit">
-							<i class="bi bi-search-heart p-2"></i>Rechercher
-						</button>
-					</form>
-				</div>
-			</div>
-		</nav>
-
-
-	</header>
-
-	<body>
-		<div class="container mt-5">
-			<div class="row">
-				<div
-					class="col">
-					<!-- Carrousel -->
-					<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-						<div
-							class="carousel-inner">
+				<!-- Carrousel -->
+				<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+					<div class="carousel-inner">
+						{% for film in films %}
 							<!-- Première diapositive -->
-							<div class="carousel-item active">
+							<div class="carousel-item {% if loop.first %}active{% endif %}">
 								<div class="row">
 									<div class="col-md-6">
-										<h2>get.titre</h2>
-										<p>Réalisé en "get.annee" par "get.realisateur"</p>
-										<p>avec "get.acteur" dans le role de "get.role"</p>
-										<p>avec "get.acteur" dans le role de "get.role"</p>
-										<p>avec "get.acteur" dans le role de "get.role"</p>
+										<h2>{{ film.getTitre }}</h2>
+										<p>Réalisé en
+											<strong>{{ film.getAnnee }}</strong>
+											par
+											<strong>{{ film.getRealisateur }}</strong>
+										</p>
+
+										<p>avec
+											<strong>{{ film.role.acteur.getPrenom }}</strong>
+											<strong>{{ film.role.acteur.getNom }}</strong>
+											dans le rôle de
+											<strong>{{ film.role.getPersonnage }}</strong>
+
+										</p>
+
 									</div>
 									<div class="col-md-6">
-										<img src="view/web/img/matrix.jpg" class="rounded" alt="Image 1">
+										<img src="{{ film.getAffiche }}" class="rounded" alt="{{ film.getTitre }}">
 									</div>
 								</div>
 							</div>
-							<!-- Deuxième diapositive -->
-							<div class="carousel-item">
-								<div class="row">
-									<div class="col-md-6">
-										<h2>get.titre</h2>
-										<p>Réalisé en "get.annee" par "get.realisateur"</p>
-										<p>avec "get.acteur" dans le role de "get.role"</p>
-										<p>avec "get.acteur" dans le role de "get.role"</p>
-										<p>avec "get.acteur" dans le role de "get.role"</p>
-									</div>
-									<div class="col-md-6">
-										<img src="view/web/img/matrix2.jpg" class="rounded" alt="Image 2">
-									</div>
-								</div>
-							</div>
-							<!-- Troisième diapositive -->
-							<div class="carousel-item">
-								<div class="row">
-									<div class="col-md-6">
-										<h2>get.titre</h2>
-										<p>Réalisé en "get.annee" par "get.realisateur"</p>
-										<p>avec "get.acteur" dans le role de "get.role"</p>
-										<p>avec "get.acteur" dans le role de "get.role"</p>
-										<p>avec "get.acteur" dans le role de "get.role"</p>
-									</div>
-									<div class="col-md-6">
-										<img src="view/web/img/matrix3.jpg" class="rounded" alt="Image 3">
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Contrôles du carrousel -->
-						<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Previous</span>
-						</button>
-						<button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Next</span>
-						</button>
+						{% endfor %}
 					</div>
-				</div>
-			</div>
-			<!-- Boutons Previous et Next centrés -->
-			<div class="row mt-3 justify-content-center">
-				<div class="col-auto">
-					<button class="btn btn-primary" type="button" onclick="prevSlide()">Previous</button>
-				</div>
-				<div class="col-auto">
-					<button class="btn btn-primary" type="button" onclick="nextSlide()">Next</button>
+					<!-- Contrôles du carrousel -->
+					<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<!-- Link Bootstrap JS et jQuery -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+	<!-- Boutons Previous et Next centrés -->
+	<div class="row mt-3 justify-content-center">
+		<div class="col-auto">
+			<button class="btn btn-primary" type="button" onclick="prevSlide()">Previous</button>
+		</div>
+		<div class="col-auto">
+			<button class="btn btn-primary" type="button" onclick="nextSlide()">Next</button>
+		</div>
+	</div>
 
-		<!-- JavaScript pour contrôler le carrousel -->
-		<script>
-			var myCarousel = new bootstrap.Carousel(document.getElementById('myCarousel'));
-
-function prevSlide() {
-myCarousel.prev();
-}
-
-function nextSlide() {
-myCarousel.next();
-}
-		</script>
-
-
-	</body>
-</html>
+</body>
