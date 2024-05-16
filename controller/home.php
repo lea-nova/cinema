@@ -1,10 +1,5 @@
 <?php
 
-// use Model\entity\Acteur;
-// use Model\repository\ActeurDao;
-use Model\entity\Film;
-use Model\entity\Role;
-use Model\entity\Acteur;
 use Model\repository\FilmDao;
 
 
