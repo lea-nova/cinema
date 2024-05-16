@@ -1,63 +1,38 @@
 <body>
-	{% if session.user is defined %}
-		Bonjour
-		{{session.user}}
+	{% if user%}
+		{{"Bienvenue git i"}}
 	{% else %}
-		Connectez-vous
+		{{"Connectez-vous pour créer un film"}}
 	{% endif %}
-	<div class="container mt-5">
-		<div class="row">
+
+	<div class="container mt-5 ">
+		<div class="row d-flex flex-row mb-3 d-flex justify-content-center">
 			<div
-				class="col">
+				class="col-12">
+
 				<!-- Carrousel -->
 				<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-					<div
-						class="carousel-inner">
-						<!-- Première diapositive -->
-						<div class="carousel-item active">
-							<div class="row">
-								<div class="col-md-6">
-									<h2>get.titre</h2>
-									<p>Réalisé en "get.annee" par "get.realisateur"</p>
-									<p>avec "get.acteur" dans le role de "get.role"</p>
-									<p>avec "get.acteur" dans le role de "get.role"</p>
-									<p>avec "get.acteur" dans le role de "get.role"</p>
-								</div>
-								<div class="col-md-6">
-									<img src="view/web/img/matrix.jpg" class="rounded" alt="Image 1">
-								</div>
-							</div>
-						</div>
-						<!-- Deuxième diapositive -->
-						<div class="carousel-item">
-							<div class="row">
-								<div class="col-md-6">
-									<h2>get.titre</h2>
-									<p>Réalisé en "get.annee" par "get.realisateur"</p>
-									<p>avec "get.acteur" dans le role de "get.role"</p>
-									<p>avec "get.acteur" dans le role de "get.role"</p>
-									<p>avec "get.acteur" dans le role de "get.role"</p>
-								</div>
-								<div class="col-md-6">
-									<img src="view/web/img/matrix2.jpg" class="rounded" alt="Image 2">
+					<div class="carousel-inner">
+						{% for film in films %}
+							<div class="carousel-item {% if loop.first %}active{% endif %}">
+								<div class="row">
+									{{ film.titre }}
+									{% for role in film.roles %}
+										<li>{{ role.personnage }}
+											joué par
+											{{ role.acteur.nom }}
+											{{ role.acteur.prenom }}</li>
+									{% endfor %}
+									{# <div class="col-md-6"></div> #}
+									<div class="col-12">
+										<img src="{{film.affiche}}" class="rounded" alt="Image 1">
+
+									</div>
 								</div>
 							</div>
-						</div>
-						<!-- Troisième diapositive -->
-						<div class="carousel-item">
-							<div class="row">
-								<div class="col-md-6">
-									<h2>get.titre</h2>
-									<p>Réalisé en "get.annee" par "get.realisateur"</p>
-									<p>avec "get.acteur" dans le role de "get.role"</p>
-									<p>avec "get.acteur" dans le role de "get.role"</p>
-									<p>avec "get.acteur" dans le role de "get.role"</p>
-								</div>
-								<div class="col-md-6">
-									<img src="view/web/img/matrix3.jpg" class="rounded" alt="Image 3">
-								</div>
-							</div>
-						</div>
+
+						{% endfor %}
+
 					</div>
 					<!-- Contrôles du carrousel -->
 					<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
@@ -71,33 +46,14 @@
 				</div>
 			</div>
 		</div>
-		<!-- Boutons Previous et Next centrés -->
-		<div class="row mt-3 justify-content-center">
-			<div class="col-auto">
-				<button class="btn btn-primary" type="button" onclick="prevSlide()">Previous</button>
-			</div>
-			<div class="col-auto">
-				<button class="btn btn-primary" type="button" onclick="nextSlide()">Next</button>
-			</div>
-		</div>
 	</div>
 
-	<!-- Link Bootstrap JS et jQuery -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
-	<!-- JavaScript pour contrôler le carrousel -->
-	<script>
-		var myCarousel = new bootstrap.Carousel(document.getElementById('myCarousel'));
-
-function prevSlide() {
-myCarousel.prev();
-}
-
-function nextSlide() {
-myCarousel.next();
-}
-	</script>
-
-
-</body></html>
+	<!-- Boutons Previous et Next centrés -->
+	{# <div class="row mt-3 justify-content-center">
+										<div class="col-auto">
+											<button class="btn btn-primary" type="button" onclick="prevSlide()">Previous</button>
+										</div>
+										<div class="col-auto">
+											<button class="btn btn-primary" type="button" onclick="nextSlide()">Next</button>
+										</div> #}
+</body></div></body>
