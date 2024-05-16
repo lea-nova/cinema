@@ -16,6 +16,7 @@ if (!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['pass
     $user = new User(null, $_POST['username'], $_POST['email'], $_POST['password']);
     $status = $userDao::addOne($user);
     $_SESSION["username"] = $userDao::getbyUsername($_POST["login_email"]);
+    setcookie('id', $_POST["email"], time() + 3600);
     header("location: home");
 }
 

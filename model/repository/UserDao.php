@@ -38,8 +38,9 @@ class UserDao extends Dao
     //Ajouter un item
     public static function addOne(Object $data): bool
     {
+        $hashed_password = password_hash($data->getPassword(), PASSWORD_BCRYPT);
         $query = 'INSERT INTO utilisateur (username, email, password) VALUES (:username, :email, :password)';
-        $value = ['username' => $data->getUsername(), 'email' => $data->getEmail(), 'password' => $data->getPassword()];
+        $value = ['username' => $data->getUsername(), 'email' => $data->getEmail(), 'password' => $hashed_password];
         $insert = self::$bdd->prepare($query);
         return $insert->execute($value);
     }
@@ -50,7 +51,7 @@ class UserDao extends Dao
         $query->bindParam(":email", $email);
         $query->execute();
         $user = $query->fetch();
-        if ($user && $user['password'] === $password) {
+        if ($user && password_verify($password, $user["password"])) {
             return true;
         } else {
             return false;
