@@ -27,13 +27,24 @@
 						<li class="nav-item">
 							<a class="nav-link" href="compte">Compte</a>
 						</li>
+						{% if session is defined %}
+							<form action="logout" method="post">
+								<button class="btn btn-outline-success" type="submit">Déconnexion</button>
+							</form>
+						{% endif %}
 					</ul>
-					<form class="d-flex" role="search">
+					<form class="d-flex" role="search" action="rechercher" method="post">
 						<input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
-						<button class="btn btn-outline-success" type="submit">Rechercher</button>
+						<button class="btn btn-outline-success" type="submit" name="search">Rechercher</button>
 					</form>
 				</div>
 			</div>
 		</nav>
+		{% if session.user is defined %}
+			Bienvenue
+			{{session.user}}
+		{% else %}
+			Connectez-vous pour créer un film
+		{% endif %}
 	</body>
 </html></header><hr></body></html>

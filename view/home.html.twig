@@ -1,10 +1,4 @@
 <body>
-	{% if user%}
-		{{"Bienvenue git i"}}
-	{% else %}
-		{{"Connectez-vous pour créer un film"}}
-	{% endif %}
-
 
 	<div class="container mt-5">
 		<div class="row">
@@ -101,11 +95,6 @@ function nextSlide() {
 myCarousel.next();
 }
 	</script>
-
-	{% for user in user %}
-		{{user.getUsername
-		}}
-	{% endfor %}
 
 
 </body></html>

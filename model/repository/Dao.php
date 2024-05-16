@@ -27,6 +27,7 @@ abstract class Dao
     // //Récupérer plus d'info sur 1 item à l'aide de son id
     abstract public static function getOne(int $id): Object;
 
+
     // //Ajouter un item
     abstract public static function addOne(Object $data): bool;
 

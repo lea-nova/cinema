@@ -11,8 +11,10 @@ require './config/init.php';
 
 
 
+
 // ************         Affichage du header  ***************************************
 require './controller/header.php';
+
 
 
 
@@ -23,7 +25,9 @@ $routes = [
     'creer' => './controller/creer.php',
     'delete' => './controller/delete.php',
     'update' => './controller/update.php',
-    'compte' => './controller/compte.php'
+    'compte' => './controller/compte.php',
+    'logout' => './controller/logout.php',
+    'rechercher' => './controller/rechercher.php'
 ];
 
 $controller = isset($_GET['action']) ?  $_GET['action'] : '/';
