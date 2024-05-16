@@ -1,11 +1,10 @@
 <body>
-	{% if user%}
-		{{"Bienvenue git i"}}
+	{% if session.user is defined %}
+		Bonjour
+		{{session.user}}
 	{% else %}
-		{{"Connectez-vous pour créer un film"}}
+		Connectez-vous
 	{% endif %}
-
-
 	<div class="container mt-5">
 		<div class="row">
 			<div
@@ -19,89 +18,71 @@
 							<div class="row">
 								<div class="col-md-6">
 									<h2>get.titre</h2>
-									<p>Réalisé en
-										{{film.getAnnee}}
-										par "get.realisateur"</p>
+									<p>Réalisé en "get.annee" par "get.realisateur"</p>
 									<p>avec "get.acteur" dans le role de "get.role"</p>
 									<p>avec "get.acteur" dans le role de "get.role"</p>
 									<p>avec "get.acteur" dans le role de "get.role"</p>
-									>>>>>>> jordan
 								</div>
-							</div>
-							<!-- Deuxième diapositive -->
-							<div class="carousel-item">
-								<div class="row">
-									<div class="col-md-6">
-										<h2>get.titre</h2>
-										<p>Réalisé en "get.annee" par "get.realisateur"</p>
-										<p>avec "get.acteur" dans le role de "get.role"</p>
-										<p>avec "get.acteur" dans le role de "get.role"</p>
-										<p>avec "get.acteur" dans le role de "get.role"</p>
-									</div>
-									<div class="col-md-6">
-										<img src="view/web/img/matrix2.jpg" class="rounded" alt="Image 2">
-									</div>
-								</div>
-							</div>
-							<!-- Troisième diapositive -->
-							<div class="carousel-item">
-								<div class="row">
-									<div class="col-md-6">
-										<h2>get.titre</h2>
-										<p>Réalisé en "get.annee" par "get.realisateur"</p>
-										<p>avec "get.acteur" dans le role de "get.role"</p>
-										<p>avec "get.acteur" dans le role de "get.role"</p>
-										<p>avec "get.acteur" dans le role de "get.role"</p>
-									</div>
-									<div class="col-md-6">
-										<img src="view/web/img/matrix3.jpg" class="rounded" alt="Image 3">
-									</div>
+								<div class="col-md-6">
+									<img src="view/web/img/matrix.jpg" class="rounded" alt="Image 1">
 								</div>
 							</div>
 						</div>
-						<!-- Contrôles du carrousel -->
-						<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Previous</span>
-						</button>
-						<button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Next</span>
-						</button>
+						<!-- Deuxième diapositive -->
+						<div class="carousel-item">
+							<div class="row">
+								<div class="col-md-6">
+									<h2>get.titre</h2>
+									<p>Réalisé en "get.annee" par "get.realisateur"</p>
+									<p>avec "get.acteur" dans le role de "get.role"</p>
+									<p>avec "get.acteur" dans le role de "get.role"</p>
+									<p>avec "get.acteur" dans le role de "get.role"</p>
+								</div>
+								<div class="col-md-6">
+									<img src="view/web/img/matrix2.jpg" class="rounded" alt="Image 2">
+								</div>
+							</div>
+						</div>
+						<!-- Troisième diapositive -->
+						<div class="carousel-item">
+							<div class="row">
+								<div class="col-md-6">
+									<h2>get.titre</h2>
+									<p>Réalisé en "get.annee" par "get.realisateur"</p>
+									<p>avec "get.acteur" dans le role de "get.role"</p>
+									<p>avec "get.acteur" dans le role de "get.role"</p>
+									<p>avec "get.acteur" dans le role de "get.role"</p>
+								</div>
+								<div class="col-md-6">
+									<img src="view/web/img/matrix3.jpg" class="rounded" alt="Image 3">
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
-			<!-- Boutons Previous et Next centrés -->
-			<div class="row mt-3 justify-content-center">
-				<div class="col-auto">
-					<button class="btn btn-primary" type="button" onclick="prevSlide()">Previous</button>
-				</div>
-				<div class="col-auto">
-					<button class="btn btn-primary" type="button" onclick="nextSlide()">Next</button>
+					<!-- Contrôles du carrousel -->
+					<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
 				</div>
 			</div>
 		</div>
+		<!-- Boutons Previous et Next centrés -->
+		<div class="row mt-3 justify-content-center">
+			<div class="col-auto">
+				<button class="btn btn-primary" type="button" onclick="prevSlide()">Previous</button>
+			</div>
+			<div class="col-auto">
+				<button class="btn btn-primary" type="button" onclick="nextSlide()">Next</button>
+			</div>
+		</div>
+	</div>
 
-		<!-- Link Bootstrap JS et jQuery -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
-		<!-- JavaScript pour contrôler le carrousel -->
-		<script>
-			var myCarousel = new bootstrap.Carousel(document.getElementById('myCarousel'));
-
-function prevSlide() {
-myCarousel.prev();
-}
-
-function nextSlide() {
-myCarousel.next();
-}
-		</script>
-
-		{% for user in user %}
-			{{user.getUsername
-		}}
-		{% endfor %}
-	</body>
-</body></html>
+	<!-- Link Bootstrap JS et jQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>

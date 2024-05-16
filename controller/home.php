@@ -1,13 +1,10 @@
 <?php
+$_SESSION["user"] = "fjzoizojf";
+// var_dump($_SESSION);
+unset($_SESSION['user']);
 
 //On affiche le template Twig correspondant
 
-use Model\repository\UserDao;
-
-$user = null;
-
-
-$userDao = new UserDao();
-$user = $userDao->getAll();
-
-echo $twig->render('home.html.twig', ["user" => $user]);
+// // var_dump($_SESSION);
+// unset($_SESSION['user']);
+echo $twig->render('home.html.twig');

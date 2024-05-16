@@ -14,10 +14,15 @@ class FilmDao extends Dao
     public static function getAll(): array
     {
         $query = self::$bdd->prepare("SELECT * FROM film JOIN role ON role.id_Film=film.id JOIN acteur ON acteur.id = role.id_Acteur GROUP BY film.id");
+        $query = self::$bdd->prepare("SELECT * FROM film JOIN role ON role.id_Film=film.id JOIN acteur ON acteur.id = role.id_Acteur GROUP BY film.id");
         $query->execute();
         $films = array();
         $filmDao = new FilmDao();
+        $filmDao = new FilmDao();
         while ($data = $query->fetch()) {
+            $roles = array();
+            $roles = $filmDao->getRole($data['id_Film']);
+            $films[] = new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], $roles);
             $roles = array();
             $roles = $filmDao->getRole($data['id_Film']);
             $films[] = new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], $roles);
@@ -65,6 +70,26 @@ class FilmDao extends Dao
         $query->bindParam(':role_id', $idRole, \PDO::PARAM_INT);
         $query->bindParam(':personnage', $personnage, \PDO::PARAM_STR);
         return $query->execute();
+    }
+    public function getRole($id): array
+    {
+        $roles = array();
+        $query = self::$bdd->prepare("SELECT *  FROM `role` JOIN film ON film.id = role.id_Film JOIN acteur on role.id_Film = :id WHERE role.id_Acteur= acteur.id ");
+        $query->execute(array(':id' => $id));
+        while ($data = $query->fetch()) {
+            $acteur = new Acteur($data['id'], $data['nom'], $data['prenom']);
+            $role = new Role($data['id'], $data['personnage'], $acteur);
+            $roles[] = $role;
+        }
+        return $roles;
+        $roles = array();
+        $role = new Role($data['id'], $data['personnage'], new Acteur($data['id'], $data['nom'], $data['prenom']));
+
+        return  $films[] = new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], $roles[$role]);
+    }
+
+    public function addRole()
+    {
     }
     public function getRole($id): array
     {

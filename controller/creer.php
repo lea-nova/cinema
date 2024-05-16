@@ -2,20 +2,13 @@
 
 // use Model\entity\Acteur;
 // use Model\repository\ActeurDao;
-// use Model\entity\Film;
+use Model\entity\Film;
+use Model\entity\Role;
+use Model\entity\Acteur;
 use Model\repository\FilmDao;
 
 // $message = null;
-// $offre = null;
-
-// if (isset($_POST['title']) && isset($_POST['description'])) {
-
-//     $offre = new Offre(null, $_POST['title'], $_POST['description']);
-
-//     $offreDao = new OffreDAO();
-//     $status = $offreDao::addOne($offre);
-//     $message = $status ? "Ajout OK" : "Erreur Ajout";
-// }
+// var_dump($_POST);
 
 // $test = new ActeurDao();
 // $acteurs = $test->getAll();
@@ -27,12 +20,27 @@ use Model\repository\FilmDao;
 
 // ]);
 
+$acteur = new Acteur(null, "fjfez", "fezf");
+// $role = new Role(null, "jfoijef", $acteur);
 $test = new FilmDao();
-$films = $test->getAll();
-// var_dump($acteurs);
+// $films = $test->getRole($id);
+// var_dump($films);
+$id = 1;
+$role = new FilmDao();
+$films = $role->getAll();
+// var_dump($films);
+
+// var_dump($role);
+
+// $role->addRoleToFilm($id);
+// // $testFilm = $role->addRoleToFilm($id);
+
 
 echo $twig->render('creer.html.twig', [
-    "films" => $films
+    "films" => $films,
+    // "films" => $films,
+    // "roles" => $role,
+    // "acteurs" => $acteur,
     // 'message' => $message,
 
 ]);

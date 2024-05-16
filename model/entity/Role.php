@@ -4,19 +4,17 @@ namespace Model\entity;
 
 class Role
 {
-    private $idRole;
+    private ?int $idRole;
     private $personnage;
     private $acteur;
 
 
-    public function __construct(int $idRole, string $personnage, Acteur $acteur)
+    public function __construct(?int $idRole = null, string $personnage, Acteur $acteur)
     {
         $this->setIdRole($idRole);
         $this->setPersonnage($personnage);
         $this->setActeur($acteur);
     }
-
-
 
     /*
      
@@ -36,7 +34,6 @@ Set the value of id*
 
         return $this;
     }
-
 
     /*
      
