@@ -11,3 +11,4 @@ $twig = new \Twig\Environment($loader);
 
 
 $twig->addGlobal('session', $_SESSION);
+$twig->addGlobal('cookie', $_COOKIE);
