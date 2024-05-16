@@ -26,7 +26,6 @@ $routes = [
     'delete' => './controller/delete.php',
     'update' => './controller/update.php',
     'compte' => './controller/compte.php',
-    'logout' => './controller/logout.php',
     'rechercher' => './controller/rechercher.php'
 ];
 

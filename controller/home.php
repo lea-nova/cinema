@@ -1,13 +1,14 @@
 <?php
 
 //On affiche le template Twig correspondant
-$username = null;
 
+use Model\repository\FilmDao;
 use Model\repository\UserDao;
 
 $userDao = new UserDao();
 $user = $userDao::getAll();
 
-$username = isset($_SESSION["email"]) ? $_SESSION["email"] : null;
+$filmDao = new FilmDao();
+$films = $filmDao::getAll();
 
-echo $twig->render('home.html.twig', ["username" => $username]);
+echo $twig->render('home.html.twig');

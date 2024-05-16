@@ -56,4 +56,12 @@ class UserDao extends Dao
             return false;
         }
     }
+
+    public static function getbyUsername($email): Object
+    {
+        $query = self::$bdd->prepare('SELECT username from utilisateur WHERE email = :email');
+        $query->execute(array(':email' => $email));
+        $data = $query->fetch();
+        return new User($data['id'], $data['username'], $data['email'], $data['password']);
+    }
 }

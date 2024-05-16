@@ -30,14 +30,15 @@ if (isset($_POST["cmd_valid"])) {
 
     if (!empty($_POST["login_email"]) && !empty($_POST["login_password"])) {
         if ($userDao::checkLogin($_POST["login_email"], $_POST["login_password"])) {
-            $_SESSION["email"] = $username;
-            header("location: home");
+            $_SESSION["username"] = $userDao::getbyUsername($_POST["login_email"]);
+            header("location:home");
         } else {
             $msgEmail = "Erreur d'identification";
         }
     }
 }
 
-$username = isset($_SESSION["email"]) ? $_SESSION["email"] : null;
+
+
 
 echo $twig->render('compte.html.twig', ["user" => $user, "msgEmail" => $msgEmail, "msgMDP" => $msgMDP]);
