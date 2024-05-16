@@ -13,9 +13,9 @@ $userDao = new UserDao();
 
 
 if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['confirm_password'])) {
-
     $user = new User(null, $_POST['username'], $_POST['email'], $_POST['password']);
     $status = $userDao::addOne($user);
+    $_SESSION["username"] = $userDao::getbyUsername($_POST["login_email"]);
     header("location: home");
 }
 

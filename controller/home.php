@@ -8,7 +8,7 @@ use Model\repository\UserDao;
 $userDao = new UserDao();
 $user = $userDao::getAll();
 
-$filmDao = new FilmDao();
-$films = $filmDao::getAll();
+// $filmDao = new FilmDao();
+// $films = $filmDao::getAll();
 
 echo $twig->render('home.html.twig');
