@@ -32,7 +32,6 @@ abstract class Dao
     abstract public static function addOne(Object $data): bool;
 
     //Supprimer un item
-    // abstract public static function deleteOne(int $id): bool;
 
     //Modifier un item
     // abstract public static function updateOne(Object $data): bool;

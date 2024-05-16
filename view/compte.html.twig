@@ -48,17 +48,18 @@
 				<div class="col-md-6 flex-column ">
 					<h2 class="mb-4">Identification</h2>
 					<div class="row col-10  justify-content-center">
-						<form method="post">
+						<form action="compte" method="post">
 							<div class="mb-3">
 								<label for="login_email" class="form-label">Email</label>
-								<input type="email" class="form-control" id="login_email" placeholder="{{email}}">
+								<input type="email" class="form-control" id="login_email" name="login_email" placeholder="{{email}}">
+								{{msgEmail}}
 							</div>
 							<div class="mb-3">
 								<label for="login_password" class="form-label">Mot de passe</label>
-								<input type="password" class="form-control" id="login_password" placeholder="{{password}}">
-								{{msg}}
+								<input type="password" class="form-control" id="login_password" name="login_password" placeholder="{{password}}">
+								{{msgMDP}}
 							</div>
-							<button type="submit" class="btn btn-primary">Login</button>
+							<button type="submit" class="btn btn-primary" name="cmd_valid">Login</button>
 						</form>
 					</div>
 				</div>

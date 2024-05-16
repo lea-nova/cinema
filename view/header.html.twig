@@ -27,9 +27,9 @@
 						<li class="nav-item">
 							<a class="nav-link" href="compte">Compte</a>
 						</li>
-						{% if session is defined %}
+						{% if session.user is defined %}
 							<form action="logout" method="post">
-								<button class="btn btn-outline-success" type="submit">Déconnexion</button>
+								<button class="btn btn-outline-success" type="submit" name="logout">Déconnexion</button>
 							</form>
 						{% endif %}
 					</ul>
