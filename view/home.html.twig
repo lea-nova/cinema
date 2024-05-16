@@ -17,7 +17,7 @@
 										par
 										<strong>{{ film.realisateur }}</strong>
 									</p>
-									{% for role in film.role %}
+									{% for role in film.roles %}
 										<p>avec
 											<strong>{{ role.acteur.prenom }}</strong>
 											<strong>{{ role.acteur.nom }}</strong>
@@ -28,8 +28,8 @@
 								</div>
 
 								{# <div class="col-md-1 d-flex" style="height: 400px;">
-																	<div class="vr"></div>
-																</div> #}
+																									<div class="vr"></div>
+																								</div> #}
 
 								<div class="col-md-6 text-center">
 									<img src="{{ film.getAffiche }}" class="img-fluid w-50 rounded" alt="{{ film.getTitre }}">
