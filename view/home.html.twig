@@ -1,45 +1,58 @@
-<body>
-	<div class="container mt-5 ">
-		<div class="row">
-			<div
-				class="col">
+<div class="container mt-5">
+	<div class="row">
+		<div
+			class="col">
 
-				<!-- Carrousel -->
-				<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-					<div class="carousel-inner">
-						{% for film in films %}
-							<div class="carousel-item {% if loop.first %}active{% endif %}">
-								<div class="row">
-									{{ film.titre }}
+			<!-- Carrousel -->
+			<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-inner pb-4">
+					{% for film in films %}
+						<!-- Première diapositive -->
+						<div class="carousel-item {% if loop.first %}active{% endif %}">
+							<div class="row">
+								<div class="col-md-5">
+									<h2>{{ film.titre }}</h2>
+									<p>Réalisé en
+										<strong>{{ film.annee }}</strong>
+										par
+										<strong>{{ film.realisateur }}</strong>
+									</p>
 									{% for role in film.roles %}
-										<li>{{ role.personnage }}
-											joué par
-											{{ role.acteur.nom }}
-											{{ role.acteur.prenom }}</li>
+										<p>avec
+											<strong>{{ role.acteur.prenom }}</strong>
+											<strong>{{ role.acteur.nom }}</strong>
+											dans le rôle de
+											<strong>{{ role.personnage }}</strong>
+										</p>
 									{% endfor %}
-									{# <div class="col-md-6"></div> #}
-									<div class="col-12">
-										<img src="{{film.affiche}}" class="rounded" alt="Image 1">
+								</div>
 
-									</div>
+								{# <div class="col-md-1 d-flex" style="height: 400px;">
+																																																	<div class="vr"></div>
+																																																</div> #}
+
+								<div class="col-md-6 text-center">
+									<img src="{{ film.getAffiche }}" class="img-fluid w-50 rounded" alt="{{ film.getTitre }}">
 								</div>
 							</div>
-
-						{% endfor %}
-
-					</div>
-					<!-- Contrôles du carrousel -->
-					<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Previous</span>
-					</button>
-					<button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Next</span>
-					</button>
+						</div>
+					{% endfor %}
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
-</body>
+<!-- Boutons Previous et Next centrés -->
+<div class="row mt-3 justify-content-center">
+	<div class="col-auto">
+		<button class="btn btn-success" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+			Previous
+		</button>
+	</div>
+	<div class="col-auto">
+		<button class="btn btn-success" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+			Next
+		</button>
+	</div>
+</div></body>
