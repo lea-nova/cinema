@@ -8,8 +8,6 @@ use Model\entity\User;
 
 class UserDao extends Dao
 {
-
-
     //Récupérer toutes les items
     public static  function getAll(): array
     {
@@ -46,12 +44,16 @@ class UserDao extends Dao
         return $insert->execute($value);
     }
 
-    public static function getByEmail($email)
+    public static function checkLogin($email, $password)
     {
-        $query = self::$bdd->prepare("SELECT * FROM utilisateur WHERE email = :email ");
-        $query->execute(array(":email" => $email));
-        $data = $query->fetch();
-        $EmailUser = UserDao::getOne($data["email"]);
-        return new User($data['id'], $data['username'], $EmailUser, $data['password']);
+        $query = self::$bdd->prepare("SELECT * from utilisateur where email = :email");
+        $query->bindParam(":email", $email);
+        $query->execute();
+        $user = $query->fetch();
+        if ($user && $user['password'] === $password) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
