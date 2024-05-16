@@ -1,10 +1,20 @@
 <?php
-$_SESSION["user"] = "fjzoizojf";
-// var_dump($_SESSION);
-unset($_SESSION['user']);
 
-//On affiche le template Twig correspondant
+// use Model\entity\Acteur;
+// use Model\repository\ActeurDao;
+use Model\entity\Film;
+use Model\entity\Role;
+use Model\entity\Acteur;
+use Model\repository\FilmDao;
 
-// // var_dump($_SESSION);
-// unset($_SESSION['user']);
-echo $twig->render('home.html.twig');
+
+$role = new FilmDao();
+$films = $role->getAll();
+
+
+
+
+echo $twig->render('home.html.twig', [
+    "films" => $films,
+
+]);
