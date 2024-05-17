@@ -59,6 +59,7 @@ class FilmDao extends Dao
         return new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], $roles);
     }
 
+
     public function addRole($idFilm, $idRole, $personnage)
     {
         $query = self::$bdd->prepare("INSERT INTO role (id_film, id_acteur, personnage) VALUES (:film_id, :role_id, :personnage)");

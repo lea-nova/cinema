@@ -3,12 +3,11 @@
 namespace Model\repository;
 
 use Model\repository\Dao;
+use Model\entity\User;
 
 
 class UserDao extends Dao
 {
-
-
     //Récupérer toutes les items
     public static  function getAll(): array
     {
@@ -17,20 +16,42 @@ class UserDao extends Dao
 
 
     //Récupérer plus d'info sur 1 item à l'aide de son id
-    public static function getOne(int $id): Object
+    public static function getOne($id): Object
     {
-        return new $id;
+        $query = self::$bdd->prepare('SELECT * from utilisateur WHERE id = :id');
+        $query->execute(array(':id' => $id));
+        $data = $query->fetch();
+        return new User($data['id'], $data['username'], $data['email'], $data['password']);
     }
 
     //Ajouter un item
     public static function addOne(Object $data): bool
     {
-        return true;
+        $hashed_password = password_hash($data->getPassword(), PASSWORD_BCRYPT);
+        $query = 'INSERT INTO utilisateur (username, email, password) VALUES (:username, :email, :password)';
+        $value = ['username' => $data->getUsername(), 'email' => $data->getEmail(), 'password' => $hashed_password];
+        $insert = self::$bdd->prepare($query);
+        return $insert->execute($value);
     }
 
-    //Supprimer un item
-    // abstract public static function deleteOne(int $id): bool;
+    public static function checkLogin($email, $password)
+    {
+        $query = self::$bdd->prepare("SELECT * from utilisateur where email = :email");
+        $query->bindParam(":email", $email);
+        $query->execute();
+        $user = $query->fetch();
+        if ($user && password_verify($password, $user["password"])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-    //Modifier un item
-    // abstract public static function updateOne(Object $data): bool;
+    public static function getbyUsername($email): Object
+    {
+        $query = self::$bdd->prepare('SELECT username from utilisateur WHERE email = :email');
+        $query->execute(array(':email' => $email));
+        $data = $query->fetch();
+        return new User($data['id'], $data['username'], $data['email'], $data['password']);
+    }
 }
