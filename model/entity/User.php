@@ -9,6 +9,7 @@ class User
     private $email;
     private $password;
 
+
     public function __construct($idUser, $username, $email, $password)
     {
 
@@ -34,9 +35,10 @@ class User
     public function setUsername($username)
     {
         $this->username = $username;
-
         return $this;
     }
+
+
 
     /**
      * Get the value of email
@@ -54,7 +56,6 @@ class User
     public function setEmail($email)
     {
         $this->email = $email;
-
         return $this;
     }
 

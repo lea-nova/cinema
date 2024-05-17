@@ -1,86 +1,49 @@
-{# {% if message is null %}
-	<div>
-		<form action="creer" method="post">
-			<div class="container">
-				<label for="title">
-					<b>Titre</b>
-				</label>
-				<input type="text" placeholder="Enter Title" name="title" required>
-
-				<label for="description">
-					<b>Description</b>
-				</label>
-				<input type="text" placeholder="Enter Description" name="description" required>
-				<button type="submit">Créer Offre</button>
-			</div>
-		</form>
-	</div>
-{% else %}
-	<div>
-		<p>{{message}}
-			:</p><br>
-		{% if offre is defined %}
-			{{offre.getTitle}}
-			:
-			{{offre.getDescription}}
-		{% endif %}
-	</div>
-{% endif %} #}
-
-{# If $_SESSION  is defined #}
-{% for film in films %}
-   {{ film.titre }}
- 	{% for role in film.roles %}
-        <li>{{ role.personnage }} joué par {{ role.acteur.nom }} {{ role.acteur.prenom }}</li>
-        {% endfor %}
-
-{% endfor %}
-	<br>
-
 <div class="container col-10">
 	<form class="row g-3" method="post" action="creer">
-	<form class="row g-3" method="post" action="creer">
-		<div class="col-md-6">
-			<label for="titre" class="form-label">Titre</label>
-			<input name="titre" type="text" class="form-control" id="titre">
-		</div>
-		<div class="col-md-6">
-			<label for="annee" class="form-label">Année</label>
-			<input name="annee" type="text" class="form-control" id="annee">
-		</div>
-		<div class="col-md-12">
-			<label for="affiche" class="form-label">Affiche</label>
-			<input name="affiche" type="text" class="form-control" id="affiche">
-		</div>
-		<div class="col-md-6">
-			<label for="realisateur" class="form-label">Réalisateur</label>
-			<input name="realisateur" type="text" class="form-control" id="realisateur">
-		</div>
-		<div class="col-md-6">
-			<label for="genre" class="form-label">Genre</label>
-			<select class="form-select" aria-label="Default select example">
-				<option selected>Sélectionner le genre du film</option>
-				<option value="1">Action</option>
-				<option value="2">Aventure</option>
-				<option value="3">Animation</option>
-				<option value="4">Comédie</option>
-				<option value="5">Drame</option>
-				<option value="6">Horreur</option>
-				<option value="7">Science-fiction</option>
-				<option value="8">Fantaisie</option>
-				<option value="9">Thriller</option>
-			</select>
-		</div>
-		<div class="col-8" >
-			<span>Rôle(s)</span><span> 
-			<input   class="btn btn-secondary " value="Ajouter">
-		</span >
-		</div>
-		<div class="container col-12">
-			<div class="row col-12 mt-4">
-				{# <form> #}
+		<form class="row g-3" method="post" action="creer">
+			<div class="col-md-6">
+				<label for="titre" class="form-label">Titre</label>
+				<input name="titre" type="text" class="form-control" id="titre">
+			</div>
+			<div class="col-md-6">
+				<label for="annee" class="form-label">Année</label>
+				<input name="annee" type="text" class="form-control" id="annee">
+			</div>
+			<div class="col-md-12">
+				<label for="affiche" class="form-label">Affiche</label>
+				<input name="affiche" type="text" class="form-control" id="affiche">
+			</div>
+			<div class="col-md-6">
+				<label for="realisateur" class="form-label">Réalisateur</label>
+				<input name="realisateur" type="text" class="form-control" id="realisateur">
+			</div>
+			<div class="col-md-6">
+				<label for="genre" class="form-label">Genre</label>
+				<select class="form-select" aria-label="Default select example">
+					<option selected>Sélectionner le genre du film</option>
+					<option value="1">Action</option>
+					<option value="2">Aventure</option>
+					<option value="3">Animation</option>
+					<option value="4">Comédie</option>
+					<option value="5">Drame</option>
+					<option value="6">Horreur</option>
+					<option value="7">Science-fiction</option>
+					<option value="8">Fantaisie</option>
+					<option value="9">Thriller</option>
+				</select>
+			</div>
+			<div class="col-8">
+				<span>Rôle(s)</span>
+				<span>
+					<input class="btn btn-secondary " value="Ajouter">
+				</span>
+			</div>
+			<div class="container col-12">
+				<div
+					class="row col-12 mt-4">
+					{# <form> #}
 					<div class="form-group col-4">
-						<input name="personnage"type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Personnage">
+						<input name="personnage" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Personnage">
 					</div>
 					<div class="form-group col-3">
 						<input name="nom" type="text" class="form-control" id="exampleInputPassword1" placeholder="Nom">
@@ -89,21 +52,17 @@
 						<input name="prenom" type="text" class="form-control" id="exampleInputPassword1" placeholder="Prenom">
 					</div>
 					<button type="delete" class="btn btn-secondary col-1 ">Delete</button>
-				{# </form> #}
+					{# </form> #}
+				</div>
 			</div>
-		</div>
-		<div class="col-12 d-flex justify-content-center mt-5">
-			<button type="submit"  class="btn btn-primary">Creer</button>
-		</div>
-	</form>
-</div>
+			<div class="col-12 d-flex justify-content-center mt-5">
+				<button type="submit" class="btn btn-primary">Creer</button>
+			</div>
+		</form>
+	</div>
 
 
-
-
-
-{# {% for role in roles %}
-{{ role.personnage }}
-{{ role.acteurs.nom }}
-{% endfor %} #}
-
+	{# {% for role in roles %}
+	{{ role.personnage }}
+	{{ role.acteurs.nom }}
+	{% endfor %} #}
