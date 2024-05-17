@@ -6,7 +6,7 @@ use Model\entity\Acteur;
 
 class ActeurDao extends Dao
 {
-    public static function getAll(): array
+    public static function getAll(string $recherche = ""): array
     {
         $query = self::$bdd->prepare(" SELECT * FROM acteur");
         $query->execute();
@@ -31,8 +31,8 @@ class ActeurDao extends Dao
 
     public static function addOne($data): bool
     {
-        $query = self::$bdd->prepare('INSERT INTO acteur VALUES (:id, :nom, :prenom)');
-        $value = ['id' => $data->getId(), 'nom' => $data->getNom(), 'prenom' => $data->getPrenom()];
+        $query = 'INSERT INTO acteur VALUES (:id, :nom, :prenom)';
+        $value = ['id' => $data->getIdActeur(), 'nom' => $data->getNom(), 'prenom' => $data->getPrenom()];
         $insert = self::$bdd->prepare($query);
         return $insert->execute($value);
     }
