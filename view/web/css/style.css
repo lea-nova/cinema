@@ -19,13 +19,13 @@ footer {
    /* Hauteur du footer */
    color: white;
    text-align: center;
-   line-height: 40px;
 
 }
 
 /* Centrer les images dans la colonne de droite */
 .carousel-item img {
-   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.8);
+   width: 200px;
+   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.8);
    /* Ombre tout autour */
 }
 
@@ -42,11 +42,6 @@ footer {
    /* Réinitialiser la position par défaut (à droite) */
    left: 0;
    /* Déplacer le bouton "Next" vers la gauche */
-}
-
-.vertical-line {
-   border-left: 10px solid red;
-   height: 100%;
 }
 
 a {
