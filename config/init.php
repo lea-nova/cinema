@@ -3,8 +3,6 @@
 session_start();
 
 
-
-
 require_once __DIR__ . '/../vendor/autoload.php';
 
 
@@ -13,5 +11,4 @@ $twig = new \Twig\Environment($loader);
 
 
 $twig->addGlobal('session', $_SESSION);
-
-session_destroy();
+$twig->addGlobal('cookie', $_COOKIE);

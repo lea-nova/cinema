@@ -14,15 +14,10 @@ class FilmDao extends Dao
     public static function getAll(): array
     {
         $query = self::$bdd->prepare("SELECT * FROM film JOIN role ON role.id_Film=film.id JOIN acteur ON acteur.id = role.id_Acteur GROUP BY film.id");
-        $query = self::$bdd->prepare("SELECT * FROM film JOIN role ON role.id_Film=film.id JOIN acteur ON acteur.id = role.id_Acteur GROUP BY film.id");
         $query->execute();
         $films = array();
         $filmDao = new FilmDao();
-        $filmDao = new FilmDao();
         while ($data = $query->fetch()) {
-            $roles = array();
-            $roles = $filmDao->getRole($data['id_Film']);
-            $films[] = new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], $roles);
             $roles = array();
             $roles = $filmDao->getRole($data['id_Film']);
             $films[] = new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], $roles);
@@ -43,34 +38,15 @@ class FilmDao extends Dao
     //Récupérer plus d'info sur 1 film
     public static function getOne(int $id): Film
     {
-        $query = self::$bdd->prepare('SELECT 
-        film.id, film.titre, film.realisateur, film.affiche, film.annee, 
-        role.id, role.personnage, 
-        acteur.id, acteur.nom, acteur.prenom 
-                FROM film 
-                JOIN role ON role.id_Film = film.id 
-                JOIN acteur ON role.id_Acteur = acteur.id
-                WHERE film.id = :id');
-        $query->execute(array(':id' => $id));
+        $query = self::$bdd->prepare('SELECT * FROM film WHERE id = :id_film');
+        $query->execute(array(':id_film' => $id));
         $data = $query->fetch();
         $roles = array();
-        while ($row = $query->fetch()) {
-            $acteur = new Acteur($data['id'], $data['nom'], $data['prenom']);
-            $role = new Role($data['id'], $data['personnage'], $acteur);
-            $roles[] = $role;
-        }
+        $role = new Role($data['id'], $data['personnage'], new Acteur($data['id'], $data['nom'], $data['prenom']));
 
-        return new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], $roles);
+        return  $films[] = new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], $roles[$role]);
     }
 
-    public function addRole($idFilm, $idRole, $personnage)
-    {
-        $query = self::$bdd->prepare("INSERT INTO role (id_film, id_acteur, personnage) VALUES (:film_id, :role_id, :personnage)");
-        $query->bindParam(':film_id', $idFilm, \PDO::PARAM_INT);
-        $query->bindParam(':role_id', $idRole, \PDO::PARAM_INT);
-        $query->bindParam(':personnage', $personnage, \PDO::PARAM_STR);
-        return $query->execute();
-    }
     public function getRole($id): array
     {
         $roles = array();
@@ -82,9 +58,13 @@ class FilmDao extends Dao
             $roles[] = $role;
         }
         return $roles;
-        $roles = array();
-        $role = new Role($data['id'], $data['personnage'], new Acteur($data['id'], $data['nom'], $data['prenom']));
-
-        return  $films[] = new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], $roles[$role]);
+    }
+    public function addRole($idFilm, $idRole, $personnage)
+    {
+        $query = self::$bdd->prepare("INSERT INTO role (id_film, id_acteur, personnage) VALUES (:film_id, :role_id, :personnage)");
+        $query->bindParam(':film_id', $idFilm, \PDO::PARAM_INT);
+        $query->bindParam(':role_id', $idRole, \PDO::PARAM_INT);
+        $query->bindParam(':personnage', $personnage, \PDO::PARAM_STR);
+        return $query->execute();
     }
 }
