@@ -47,7 +47,7 @@
 		</nav>
 		{% if session.username is defined %}
 			Bienvenue
-			{{cookie.id}}
+			{{session.username}}
 		{% else %}
 			<a href="compte">
 				Connectez-vous pour créer</a>
