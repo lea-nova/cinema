@@ -1,19 +1,23 @@
 <?php
 
+
 use Model\repository\FilmDao;
 
-// if (!isset($_SESSION['user_id'])) {
-//     header('Location: compte');
-//     exit;
-// }
-
-// $search = $_POST['search'];
+$filmDao = new FilmDao();
+$resultats = [];
 
 
-// $filmDao = new FilmDao();
-// $results = $filmDao->search($search);
+// Vérifier si des données de recherche ont été soumises via POST
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['search'])) {
 
-// echo $twig->render('home.html.twig', [
-//     'results' => $results,
-//     'search' => $search
-// ]);
+    $recherche = '%' . htmlspecialchars($_POST['input-search']) . '%';
+
+    // Parcourir tous les films pour comparer les titres
+    foreach ($filmDao::getAll() as $film) {
+        $titre = $film->getTitre();
+        if (stripos($titre, $_POST['input-search']) !== false) {
+            $resultats[] = $titre;
+        }
+    }
+}
+echo $twig->render('rechercher.html.twig', ['resultats' => $resultats]);
