@@ -25,7 +25,7 @@ $acteur = new Acteur(null, "fjfez", "fezf");
 $test = new FilmDao();
 // $films = $test->getRole($id);
 // var_dump($films);
-$id = 1;
+
 $role = new FilmDao();
 $films = $role->getAll();
 // var_dump($films);

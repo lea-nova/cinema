@@ -42,13 +42,30 @@ class FilmDao extends Dao
         $query->execute(array(':id_film' => $id));
         $data = $query->fetch();
         $roles = array();
-        $role = new Role($data['id'], $data['personnage'], new Acteur($data['id'], $data['nom'], $data['prenom']));
 
-        return  $films[] = new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], $roles[$role]);
+        // Vérifiez que des données ont été récupérées
+        if ($data) {
+            // Si des données ont été récupérées, créez les objets Role associés
+            $roleQuery = self::$bdd->prepare('SELECT * FROM role WHERE id_Film = :id_film');
+            $roleQuery->execute(array(':id_film' => $id));
+            while ($roleData = $roleQuery->fetch()) {
+                $acteur = new Acteur($roleData['id'], $roleData['nom'], $roleData['prenom']);
+                $role = new Role($roleData['id'], $roleData['personnage'], $acteur);
+                $roles[] = $role;
+            }
+        }
+
+        // Créez l'objet Film avec les rôles associés
+        return new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], $roles);
     }
 
-    public function addRole()
+    public function addRole($idFilm, $idRole, $personnage)
     {
+        $query = self::$bdd->prepare("INSERT INTO role (id_film, id_acteur, personnage) VALUES (:film_id, :role_id, :personnage)");
+        $query->bindParam(':film_id', $idFilm, \PDO::PARAM_INT);
+        $query->bindParam(':role_id', $idRole, \PDO::PARAM_INT);
+        $query->bindParam(':personnage', $personnage, \PDO::PARAM_STR);
+        return $query->execute();
     }
     public function getRole($id): array
     {

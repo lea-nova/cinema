@@ -1,9 +1,9 @@
-/* body {
+body {
    color: rgb(226, 226, 240);
    background-color: black;
    font-family: 'Ubuntu', sans-serif;
    margin: 0px;
-} */
+}
 
 header,
 footer {
@@ -19,35 +19,37 @@ footer {
 
 
 /* Centrer les images dans la colonne de droite */
-.carousel-item img {
-   margin: 30px auto;
-   /* Centrage horizontal */
-   width: 250px;
-   /* Largeur spécifique */
-   height: 350px;
-   /* Hauteur spécifique */
-   object-fit: cover;
-   /* Redimensionnement sans déformation */
-   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.8);
-   /* Ombre tout autour */
-}
+/* .carousel-item img { */
+/* margin: 30px auto; */
+/* Centrage horizontal */
+/* width: 250px; */
+/* Largeur spécifique */
+/* height: 350px; */
+/* Hauteur spécifique */
+/* object-fit: cover; */
+/* Redimensionnement sans déformation */
+/* box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.8); */
+/* Ombre tout autour */
+/* } */
+
+
 
 /* Personnalisation des boutons de navigation */
-.carousel-control-prev {
-   left: auto;
-   /* Réinitialiser la position par défaut (à gauche) */
-   right: 0;
-   /* Déplacer le bouton "Previous" vers la droite */
-}
+/* .carousel-control-prev { */
+/* left: auto; */
+/* Réinitialiser la position par défaut (à gauche) */
+/* right: 0; */
+/* Déplacer le bouton "Previous" vers la droite */
+/* } */
 
-.carousel-control-next {
-   right: auto;
-   /* Réinitialiser la position par défaut (à droite) */
-   left: 0;
-   /* Déplacer le bouton "Next" vers la gauche */
-}
+/* .carousel-control-next { */
+/* right: auto; */
+/* Réinitialiser la position par défaut (à droite) */
+/* left: 0; */
+/* Déplacer le bouton "Next" vers la gauche */
+/* } */
 
-.vertical-line {
+/* .vertical-line {
    border-left: 10px solid red;
    height: 100%;
-}
+} */
