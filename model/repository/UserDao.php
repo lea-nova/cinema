@@ -9,7 +9,7 @@ use Model\entity\User;
 class UserDao extends Dao
 {
     //Récupérer toutes les items
-    public static  function getAll(): array
+    public static  function getAll(string $recherche = ""): array
     {
         $query = self::$bdd->prepare(" SELECT * FROM utilisateur");
         $query->execute();

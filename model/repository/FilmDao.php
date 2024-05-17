@@ -11,15 +11,15 @@ use Model\repository\Dao;
 
 class FilmDao extends Dao
 {
-    public static function getAll(): array
+    public static function getAll(string $recherche = ""): array
     {
-        $query = self::$bdd->prepare("SELECT * FROM film JOIN role ON role.id_Film=film.id JOIN acteur ON acteur.id = role.id_Acteur GROUP BY film.id");
-        $query->execute();
+        $query = self::$bdd->prepare("SELECT * FROM film WHERE upper(titre) LIKE  :titre ");
+        $query->execute(array(':titre' => '%' . strtoupper($recherche) . '%'));
         $films = array();
         $filmDao = new FilmDao();
         while ($data = $query->fetch()) {
             $roles = array();
-            $roles = $filmDao->getRole($data['id_Film']);
+            $roles = $filmDao->getRole($data['id']);
             $films[] = new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], $roles);
         }
         return ($films);
@@ -46,7 +46,7 @@ class FilmDao extends Dao
         // Vérifiez que des données ont été récupérées
         if ($data) {
             // Si des données ont été récupérées, créez les objets Role associés
-            $roleQuery = self::$bdd->prepare('SELECT * FROM role WHERE id_Film = :id_film');
+            $roleQuery = self::$bdd->prepare('SELECT * FROM role JOIN acteur ON acteur.id = role.id_Acteur WHERE id_Film = :id_film ');
             $roleQuery->execute(array(':id_film' => $id));
             while ($roleData = $roleQuery->fetch()) {
                 $acteur = new Acteur($roleData['id'], $roleData['nom'], $roleData['prenom']);
@@ -62,7 +62,7 @@ class FilmDao extends Dao
 
     public function addRole($idFilm, $idRole, $personnage)
     {
-        $query = self::$bdd->prepare("INSERT INTO role (id_film, id_acteur, personnage) VALUES (:film_id, :role_id, :personnage)");
+        $query = self::$bdd->prepare("INSERT INTO role (id_Film, id_Acteur, personnage) VALUES (:film_id, :role_id, :personnage)");
         $query->bindParam(':film_id', $idFilm, \PDO::PARAM_INT);
         $query->bindParam(':role_id', $idRole, \PDO::PARAM_INT);
         $query->bindParam(':personnage', $personnage, \PDO::PARAM_STR);
@@ -80,4 +80,13 @@ class FilmDao extends Dao
         }
         return $roles;
     }
+
+    // public function getFilmByTitle($title): Object
+    // {
+    //     $query = 'SELECT * FROM film WHERE titre = :titre';
+    //     $value = (array(':titre' => $title));
+    //     $insert = self::$bdd->prepare($query);
+    //     $insert->execute($value);
+    //     return new Film($data["id"], $data['titre'], $data['realisateur'], $data[$affiche], $data['annee']);
+    // }
 }
