@@ -1,13 +1,11 @@
 <?php
 
-//On affiche le template Twig correspondant
-
-use Model\repository\UserDao;
-
-$user = null;
+use Model\repository\FilmDao;
 
 
-$userDao = new UserDao();
-$user = $userDao->getAll();
+$role = new FilmDao();
+$films = $role->getAll();
 
-echo $twig->render('home.html.twig', ["user" => $user]);
+echo $twig->render('home.html.twig', [
+    "films" => $films
+]);
