@@ -30,12 +30,10 @@ if (isset($_POST["submit"])) {
     if (!empty($_POST['username']) || !empty($_POST['email']) || !empty($_POST['password']) || !empty($_POST['confirm_password'])) {
         if (!preg_match('/^[a-zA-Z0-9]+$/', $_POST['username'])) {
             $errorUsername = "Ne doit contenir que des lettres et des chiffres sans espace.";
-        } else if (strlen($_POST["password"]) < 4) {
-            $errorPassword = "Le mot de passe doit contenir au moins 4 caractères.";
-        } else if (strlen($_POST["password"]) < 4) {
-            $errorPassword = "Le mot de passe doit contenir au moins 4 caractères.";
         } else if (!preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $_POST['email'])) {
             $errorEmail = "L'adresse email n'est pas valide.";
+        } else if (strlen($_POST["password"]) < 4) {
+            $errorPassword = "Le mot de passe doit contenir au moins 4 caractères.";
         } else if ($_POST["password"] !== $_POST["confirm_password"]) {
             $errorConfirmPassword = "Le mot de passe ne correspond pas.";
         } else {
@@ -47,8 +45,6 @@ if (isset($_POST["submit"])) {
         }
     }
 }
-
-
 
 if (isset($_POST["cmd_valid"])) {
     if (empty($_POST["login_email"])) {
