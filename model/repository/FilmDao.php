@@ -59,13 +59,12 @@ class FilmDao extends Dao
         }
         return $roles;
     }
+    public function addRole($idFilm, $idRole, $personnage)
+    {
+        $query = self::$bdd->prepare("INSERT INTO role (id_film, id_acteur, personnage) VALUES (:film_id, :role_id, :personnage)");
+        $query->bindParam(':film_id', $idFilm, \PDO::PARAM_INT);
+        $query->bindParam(':role_id', $idRole, \PDO::PARAM_INT);
+        $query->bindParam(':personnage', $personnage, \PDO::PARAM_STR);
+        return $query->execute();
+    }
 }
-
-// public function addRole($idFilm, $idRole, $personnage)
-// {
-//     $query = self::$bdd->prepare("INSERT INTO role (id_film, id_acteur, personnage) VALUES (:film_id, :role_id, :personnage)");
-//     $query->bindParam(':film_id', $idFilm, \PDO::PARAM_INT);
-//     $query->bindParam(':role_id', $idRole, \PDO::PARAM_INT);
-//     $query->bindParam(':personnage', $personnage, \PDO::PARAM_STR);
-//     return $query->execute();
-// }

@@ -1,6 +1,5 @@
 <?php
 
-
 if (isset($_POST["logout"])) {
     session_unset();
     session_destroy();
@@ -8,6 +7,5 @@ if (isset($_POST["logout"])) {
     header("location: home");
     exit;
 }
-
 
 echo $twig->render('header.html.twig');
