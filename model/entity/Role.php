@@ -2,6 +2,8 @@
 
 namespace Model\entity;
 
+use Exception;
+
 class Role
 {
     private ?int $idRole;
@@ -53,7 +55,10 @@ Get the value of personnage*/
      */
     public function setActeur($acteur)
     {
-        $this->acteur = $acteur;
+        if (isset($acteur) && !empty($acteur)) {
+            # code...
+            $this->acteur = $acteur;
+        }
 
         return $this;
     }
@@ -63,9 +68,11 @@ Set the value of personnage*
 @return  self*/
     public function setPersonnage($personnage)
     {
-        $this->personnage = $personnage;
-
-        return $this;
+        if (isset($personnage) && !empty($personnage)) {
+            $this->personnage = $personnage;
+        } else {
+            throw new Exception("Le champ doit être rempli.", 3);
+        }
     }
 
 

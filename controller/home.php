@@ -9,12 +9,22 @@ use Model\repository\FilmDao;
 
 // $_POST['search'] = "test";
 
-$role = new FilmDao();
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['search'])) {
-    $films = $role->getAll($_POST['search']);
+
+
+$film = new FilmDao();
+
+if (empty($_POST["search"])) {
+    $films = $film->getAll();
 } else {
-    $films = $role->getAll();
+    $films = $film->getAll($_POST['search']);
+    // Vérifier si aucun film n'a été renvoyé par la recherche
+    if (empty($films)) {
+        echo "Aucun film ne correspond à votre recherche.";
+        $films = $film->getAll();
+    }
 }
+
 echo $twig->render('home.html.twig', [
     "films" => $films,
+
 ]);
