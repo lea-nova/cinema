@@ -109,12 +109,7 @@ class Film
      */
     public function setAffiche($affiche)
     {
-        if (isset($affiche) && !empty($affiche)) {
-
-            $this->affiche = $affiche;
-        } else {
-            throw new Exception("Le champ doit être rempli", 5);
-        }
+        $this->affiche = $affiche;
 
         return $this;
     }
