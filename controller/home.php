@@ -1,7 +1,5 @@
 <?php
 
-// use Model\entity\Acteur;
-// use Model\repository\ActeurDao;
 use Model\entity\Film;
 use Model\entity\Role;
 use Model\entity\Acteur;
@@ -9,11 +7,8 @@ use Model\repository\FilmDao;
 
 // $_POST['search'] = "test";
 
-<<<<<<< HEAD
+
 $role = new FilmDao();
-=======
-
-
 $film = new FilmDao();
 
 if (empty($_POST["search"])) {
@@ -26,7 +21,6 @@ if (empty($_POST["search"])) {
         $films = $film->getAll();
     }
 }
->>>>>>> main
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['search'])) {
     $films = $role->getAll($_POST['search']);
