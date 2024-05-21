@@ -67,11 +67,16 @@ try {
     }
 }
 
-echo $twig->render('creer.html.twig', [
-    "errors" => $errors,
-    // "films" => $films,
-    // "roles" => $role,
-    // "acteurs" => $acteur,
-    // 'message' => $message,
 
-]);
+if (isset($_SESSION["username"])) {
+    echo $twig->render('creer.html.twig', [
+        "errors" => $errors,
+        // "films" => $films,
+        // "roles" => $role,
+        // "acteurs" => $acteur,
+        // 'message' => $message,
+
+    ]);
+} else {
+    echo $twig->render('compte.html.twig', []);
+}
