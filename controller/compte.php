@@ -40,7 +40,7 @@ if (isset($_POST["submit"])) {
             $user = new User(null, $_POST['username'], $_POST['email'], $_POST['password']);
             $status = $userDao::addOne($user);
             $_SESSION["username"] = $user->getUsername();
-            setcookie('id', $_POST["username"], time() + 3600);
+            setcookie('id', $_POST["username"], time() + 60);
             header("location: home");
         }
     }
@@ -57,7 +57,7 @@ if (isset($_POST["cmd_valid"])) {
     if (!empty($_POST["login_email"]) && !empty($_POST["login_password"])) {
         if ($userDao::checkLogin($_POST["login_email"], $_POST["login_password"])) {
             $_SESSION["username"] = $userDao::getbyUsername($_POST["login_email"])->getUsername();
-            setcookie('id', $_POST["login_email"], time() + 3600);
+            setcookie('id', $_POST["login_email"], time() + 60);
             header("location:home");
         } else {
             $msgEmail = "Erreur d'identification";
