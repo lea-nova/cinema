@@ -66,8 +66,6 @@ if (isset($_POST["cmd_valid"])) {
 }
 
 
-
-
 echo $twig->render(
     'compte.html.twig',
     [

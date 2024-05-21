@@ -11,29 +11,25 @@ use Model\repository\ActeurDao;
 $errors = [];
 
 try {
-    if (empty($_POST["nom"]) && empty($_POST["prenom"]) && empty($_POST['personnage']) && empty($_POST["titre"]) && empty($_POST["realisateur"]) && empty($_POST["affiche"]) && empty($_POST["annee"])) {
+    if (empty($_POST["nom-1"]) && empty($_POST["prenom-1"]) && empty($_POST['personnage']) && empty($_POST["titre"]) && empty($_POST["realisateur"]) && empty($_POST["affiche"]) && empty($_POST["annee"])) {
         throw new Exception("Tous les champs doivent être remplis.", 8);
     };
     $roles = [];
     $filmDao = new FilmDao();
     $acteurDao = new ActeurDAo();
-    $acteurSendToBdd = new Acteur(null, $_POST["nom"], $_POST["prenom"]);
-    ActeurDao::addOne($acteurSendToBdd);
-    $acteur = ActeurDao::getOne($_POST["nom"]);
-    $acteurId = $acteur->getIdActeur();
 
-    $roleSendToBdd = new Role(null, $_POST["personnage"], $acteur);
+    $acteurSendToBdd = new Acteur(null, $_POST["nom-1"], $_POST["prenom-1"]);
+    ActeurDao::addOne($acteurSendToBdd);
+    $acteur = ActeurDao::getOne($_POST["nom-1"]);
+    $acteurId = $acteur->getIdActeur();
+    $roleSendToBdd = new Role(null, $_POST["personnage-1"], $acteur);
     $roles[] = $roleSendToBdd;
 
+
     $filmsToBdd = new Film(null, $_POST['titre'], $_POST['realisateur'], $_POST['affiche'], $_POST["annee"], $roles);
-    // $films = FilmDao::getAll($_POST['titre']);
     FilmDao::addOne($filmsToBdd);
-
-    $filmms = FilmDao::getAll($_POST['titre']);
-    // $filmId = $filmms->getIdFilm();
-
     foreach ($roles as $role) {
-        $filmDao->addRole($role, ActeurDao::getOne($_POST["nom"])->getIdActeur(), FilmDao::getOne($_POST['titre'])->getIdFilm());
+        $filmDao->addRole($role, ActeurDao::getOne($_POST["nom-1"])->getIdActeur(), FilmDao::getOne($_POST['titre'])->getIdFilm());
     }
 } catch (Exception $e) {
     switch ($e->getCode()) {
@@ -71,11 +67,6 @@ try {
 if (isset($_SESSION["username"])) {
     echo $twig->render('creer.html.twig', [
         "errors" => $errors,
-        // "films" => $films,
-        // "roles" => $role,
-        // "acteurs" => $acteur,
-        // 'message' => $message,
-
     ]);
 } else {
     echo $twig->render('compte.html.twig', []);

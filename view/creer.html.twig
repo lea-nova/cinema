@@ -1,14 +1,3 @@
-{% for film in films %}
-	{{ film.titre }}
-	{% for role in film.roles %}
-		<li>{{ role.personnage }}
-			joué par
-			{{ role.acteur.nom }}
-			{{ role.acteur.prenom }}</li>
-	{% endfor %}
-
-{% endfor %}
-
 <span class="error">
 	{% if errors.autre %}
 		{{ errors.autre }}
@@ -79,11 +68,13 @@
 		<div
 			class="container col-12" id="container-ajouter">
 			{# 1ere ligne #}
+
+
 			<div
 				class="row col-12 mt-4" id="container-a-mettre">
 				{# <form method="post" > #}
 				<div class="form-group col-4">
-					<input name="personnage" type="text" class="form-control personnageInput" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Personnage">
+					<input name="personnage-1" type="text" class="form-control personnageInput" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Personnage">
 					<span class="error">
 						{% if errors.personnage %}
 							{{ errors.personnage }}
@@ -91,7 +82,7 @@
 					</span>
 				</div>
 				<div class="form-group col-3">
-					<input name="nom" type="text" class="form-control nomInput" id="exampleInputPassword1" placeholder="Nom">
+					<input name="nom-1" type="text" class="form-control nomInput" id="exampleInputPassword1" placeholder="Nom">
 					<span class="error">
 						{% if errors.nom %}
 							{{ errors.nom }}
@@ -99,19 +90,81 @@
 					</span>
 				</div>
 				<div class="form-group col-3">
-					<input name="prenom" type="text" class="form-control prenomInput" id="exampleInputPassword1" placeholder="Prenom">
+					<input name="prenom-1" type="text" class="form-control prenomInput" id="exampleInputPassword1" placeholder="Prenom">
 					<span class="error">
 						{% if errors.prenom %}
 							{{ errors.prenom }}
 						{% endif %}
 					</span>
 				</div>
-				<button id="btnDelete" class="btn btn-secondary col-1 ">Delete</button>
+				{# <button type="button" class="btn btn-secondary col-2  btnDelete">Delete</button> #}
 				{# </form> #}
 			</div>
 
 
+			<div class="row col-12 mt-4" id="container-a-mettre">
+
+				<div class="form-group col-4">
+					<input name="personnage-2" type="text" class="form-control personnageInput" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Personnage">
+					<span class="error">
+						{% if errors.personnage %}
+							{{ errors.personnage }}
+						{% endif %}
+					</span>
+				</div>
+				<div class="form-group col-3">
+					<input name="nom-2" type="text" class="form-control nomInput" id="exampleInputPassword1" placeholder="Nom">
+					<span class="error">
+						{% if errors.nom %}
+							{{ errors.nom }}
+						{% endif %}
+					</span>
+				</div>
+				<div class="form-group col-3">
+					<input name="prenom-2" type="text" class="form-control prenomInput" id="exampleInputPassword1" placeholder="Prenom">
+					<span class="error">
+						{% if errors.prenom %}
+							{{ errors.prenom }}
+						{% endif %}
+					</span>
+				</div>
+				<button type="button" class="btn btn-secondary col-2  btnDelete">Delete</button>
+
+			</div>
+
+
+			<div class="row col-12 mt-4" id="container-a-mettre">
+
+				<div class="form-group col-4">
+					<input name="personnage-3" type="text" class="form-control personnageInput" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Personnage">
+					<span class="error">
+						{% if errors.personnage %}
+							{{ errors.personnage }}
+						{% endif %}
+					</span>
+				</div>
+				<div class="form-group col-3">
+					<input name="nom-3" type="text" class="form-control nomInput" id="exampleInputPassword1" placeholder="Nom">
+					<span class="error">
+						{% if errors.nom %}
+							{{ errors.nom }}
+						{% endif %}
+					</span>
+				</div>
+				<div class="form-group col-3">
+					<input name="prenom-3" type="text" class="form-control prenomInput" id="exampleInputPassword1" placeholder="Prenom">
+					<span class="error">
+						{% if errors.prenom %}
+							{{ errors.prenom }}
+						{% endif %}
+					</span>
+				</div>
+				<button type="button" class="btn btn-secondary col-2  btnDelete">Delete</button>
+
+			</div>
+
 		</div>
+
 		<div class="col-12 d-flex justify-content-center mt-5">
 			<button type="submit" name="create" class="btn btn-primary">Creer</button>
 		</div>
