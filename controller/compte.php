@@ -12,35 +12,52 @@ $errorPassword = "";
 $errorConfirmPassword = "";
 $userDao = new UserDao();
 
+
+
 if (isset($_POST["submit"])) {
-    if (empty($_POST['username'])) {
+    $username = $_POST['username'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
+    $confirm_password = $_POST['confirm_password'] ?? '';
+
+    // Validation des champs
+    if (empty($username)) {
         $errorUsername = "Le champs username est requis";
     }
-    if (empty($_POST['email'])) {
+    if (empty($email)) {
         $errorEmail = "Le champs email est requis";
     }
-    if (empty($_POST["password"])) {
+    if (empty($password)) {
         $errorPassword = "Le champs mot de passe est requis";
     }
-    if (empty($_POST["confirm_password"])) {
+    if (empty($confirm_password)) {
         $errorConfirmPassword = "Veuillez confirmer votre mot de passe";
     }
 
-    if (!empty($_POST['username']) || !empty($_POST['email']) || !empty($_POST['password']) || !empty($_POST['confirm_password'])) {
-        if (!preg_match('/^[a-zA-Z0-9]+$/', $_POST['username'])) {
+
+
+
+    if (!empty($username) && !empty($email) && !empty($password) && !empty($confirm_password)) {
+        if (!preg_match('/^[a-zA-Z0-9]+$/', $username)) {
             $errorUsername = "Ne doit contenir que des lettres et des chiffres sans espace.";
-        } else if (!preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $_POST['email'])) {
+        } else if (!preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $email)) {
             $errorEmail = "L'adresse email n'est pas valide.";
-        } else if (strlen($_POST["password"]) < 4) {
+        } else if (strlen($password) < 4) {
             $errorPassword = "Le mot de passe doit contenir au moins 4 caractères.";
-        } else if ($_POST["password"] !== $_POST["confirm_password"]) {
+        } else if ($password !== $confirm_password) {
             $errorConfirmPassword = "Le mot de passe ne correspond pas.";
         } else {
-            $user = new User(null, $_POST['username'], $_POST['email'], $_POST['password']);
+            $user = new User(null, $username, $email, $password);
             $status = $userDao::addOne($user);
-            $_SESSION["username"] = $user->getUsername();
-            setcookie('id', $_POST["username"], time() + 3600);
-            header("location: home");
+            if ($status) {
+                $_SESSION["username"] = $user->getUsername();
+                setcookie('id', $_POST["username"], time() + 3600);
+                header("location: home");
+                exit();
+            } else {
+                // Si l'ajout échoue, ajouter un message d'erreur
+                $errorUsername = "Erreur lors de la création de l'utilisateur.";
+            }
         }
     }
 }
