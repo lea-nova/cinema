@@ -35,7 +35,7 @@
 			<div class="col-8">
 				<span>Rôle(s)</span>
 				<span>
-					<input class="btn btn-secondary " value="Ajouter">
+					<input class="btn btn-secondary " value="Ajouter" id="ajouterDiv">
 				</span>
 			</div>
 			<div class="container col-12">
@@ -55,14 +55,41 @@
 					{# </form> #}
 				</div>
 			</div>
+			<div id="nouveauContenu" class="row col-12 mt-4"></div>
+
 			<div class="col-12 d-flex justify-content-center mt-5">
 				<button type="submit" class="btn btn-primary">Creer</button>
 			</div>
 		</form>
 	</div>
 
+	<script>
+		var boutonAjouterDiv = document.getElementById("ajouterDiv");
+var containerParent = document.getElementById("nouveauContenu");
 
-	{# {% for role in roles %}
-	{{ role.personnage }}
-	{{ role.acteurs.nom }}
-	{% endfor %} #}
+boutonAjouterDiv.addEventListener("click", function () {
+var nouveauDiv = document.createElement("div");
+nouveauDiv.className = "container col-12";
+nouveauDiv.innerHTML = `
+				<div class="container col-12">
+				<div
+					class="row col-12 mt-4">
+					{# <form> #}
+					<div class="form-group col-4">
+						<input name="personnage" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Personnage">
+					</div>
+					<div class="form-group col-3">
+						<input name="nom" type="text" class="form-control" id="exampleInputPassword1" placeholder="Nom">
+					</div>
+					<div class="form-group col-3">
+						<input name="prenom" type="text" class="form-control" id="exampleInputPassword1" placeholder="Prenom">
+					</div>
+					<button type="delete" class="btn btn-secondary col-1 ">Delete</button>
+					{# </form> #}
+				</div>
+			</div>
+    `;
+
+containerParent.appendChild(nouveauDiv);
+});
+	</script>
