@@ -1,7 +1,5 @@
 <?php
 
-// use Model\entity\Acteur;
-// use Model\repository\ActeurDao;
 use Model\entity\Film;
 use Model\entity\Role;
 use Model\entity\Acteur;
@@ -11,7 +9,7 @@ use Model\repository\ActeurDao;
 $errors = [];
 
 try {
-    if (empty($_POST["nom-1"]) && empty($_POST["prenom-1"]) && empty($_POST['personnage']) && empty($_POST["titre"]) && empty($_POST["realisateur"]) && empty($_POST["affiche"]) && empty($_POST["annee"])) {
+    if (empty($_POST["nom-1"]) && empty($_POST["prenom-1"]) && empty($_POST['personnage-1']) && empty($_POST["titre"]) && empty($_POST["realisateur"]) && empty($_POST["affiche"]) && empty($_POST["annee"])) {
         throw new Exception("Tous les champs doivent être remplis.", 8);
     };
     $roles = [];
