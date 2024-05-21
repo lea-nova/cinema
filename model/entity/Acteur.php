@@ -2,9 +2,16 @@
 
 namespace Model\entity;
 
+
+
+use PDO;
+use PDOException;
+use Exception;
+use Model\entity\Role;
+
 class Acteur
 {
-    private ?int $idActeur = null;
+    private ?int $idActeur;
     private  string $nom;
     private string $prenom;
 
@@ -50,9 +57,11 @@ class Acteur
      */
     public function setNom($nom)
     {
-        $this->nom = $nom;
-
-        return $this;
+        if (isset($nom) &&  !empty($nom)) {
+            return $this->nom = $nom;
+        } else {
+            throw new Exception("Le champ n'est pas saisi correctement.", 2);
+        }
     }
 
     /**
@@ -70,8 +79,10 @@ class Acteur
      */
     public function setPrenom($prenom)
     {
-        $this->prenom = $prenom;
-
-        return $this;
+        if (isset($prenom) && !empty($prenom)) {
+            return  $this->prenom = $prenom;
+        } else {
+            throw new Exception("Le champ ne peut être vide.", 1);
+        }
     }
 }

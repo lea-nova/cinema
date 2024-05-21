@@ -6,41 +6,68 @@ use Model\entity\Film;
 use Model\entity\Role;
 use Model\entity\Acteur;
 use Model\repository\FilmDao;
+use Model\repository\ActeurDao;
 
-// $message = null;
-// var_dump($_POST);
+$errors = [];
 
-// $test = new ActeurDao();
-// $acteurs = $test->getAll();
-// // var_dump($acteurs);
+try {
+    if (empty($_POST["nom-1"]) && empty($_POST["prenom-1"]) && empty($_POST['personnage-1']) && empty($_POST["titre"]) && empty($_POST["realisateur"]) && empty($_POST["affiche"]) && empty($_POST["annee"])) {
+        throw new Exception("Tous les champs doivent être remplis.", 8);
+    };
+    $roles = [];
+    $filmDao = new FilmDao();
+    $acteurDao = new ActeurDAo();
 
-// echo $twig->render('creer.html.twig', [
-//     "acteurs" => $acteurs
-//     // 'message' => $message,
-
-// ]);
-
-$acteur = new Acteur(null, "fjfez", "fezf");
-// $role = new Role(null, "jfoijef", $acteur);
-$test = new FilmDao();
-// $films = $test->getRole($id);
-// var_dump($films);
-$id = 1;
-$role = new FilmDao();
-$films = $role->getAll();
-// var_dump($films);
-
-// var_dump($role);
-
-// $role->addRoleToFilm($id);
-// // $testFilm = $role->addRoleToFilm($id);
+    $acteurSendToBdd = new Acteur(null, $_POST["nom-1"], $_POST["prenom-1"]);
+    ActeurDao::addOne($acteurSendToBdd);
+    $acteur = ActeurDao::getOne($_POST["nom-1"]);
+    $acteurId = $acteur->getIdActeur();
+    $roleSendToBdd = new Role(null, $_POST["personnage-1"], $acteur);
+    $roles[] = $roleSendToBdd;
 
 
-echo $twig->render('creer.html.twig', [
-    "films" => $films,
-    // "films" => $films,
-    // "roles" => $role,
-    // "acteurs" => $acteur,
-    // 'message' => $message,
+    $filmsToBdd = new Film(null, $_POST['titre'], $_POST['realisateur'], $_POST['affiche'], $_POST["annee"], $roles);
+    FilmDao::addOne($filmsToBdd);
+    foreach ($roles as $role) {
+        $filmDao->addRole($role, ActeurDao::getOne($_POST["nom-1"])->getIdActeur(), FilmDao::getOne($_POST['titre'])->getIdFilm());
+    }
+} catch (Exception $e) {
+    switch ($e->getCode()) {
+        case 1:
+            $errors["prenom"] = $e->getMessage();
+            break;
+        case 2:
+            $errors["nom"] = $e->getMessage();
+            break;
+        case 3:
+            $errors["personnage"] = $e->getMessage();
+            break;
+        case 4:
+            $errors["annee"] = $e->getMessage();
+            break;
+        case 5:
+            $errors["affiche"] = $e->getMessage();
+            break;
+        case 6:
+            $errors["realisateur"] = $e->getMessage();
+            break;
+        case 7:
+            $errors["titre"] = $e->getMessage();
+            break;
+        case 8:
+            $errors["autre"] = $e->getMessage();
+            break;
+        default:
+            echo "Erreur";
+            break;
+    }
+}
 
-]);
+
+if (isset($_SESSION["username"])) {
+    echo $twig->render('creer.html.twig', [
+        "errors" => $errors,
+    ]);
+} else {
+    echo $twig->render('compte.html.twig', []);
+}
