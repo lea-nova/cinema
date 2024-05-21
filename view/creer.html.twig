@@ -82,12 +82,6 @@
 			<span>
 				<button id="btnAdd" class="btn btn-secondary ">Ajouter</button>
 			</span>
-			<div class="col-8">
-				<span>Rôle(s)</span>
-				<span>
-					<button id="btnAdd" class="btn btn-secondary ">Ajouter</button>
-				</span>
-			</div>
 			{# Début rôle #}
 			{#  container ou il y a ma ligne pour intégrer des personnages #}
 			<div
@@ -125,49 +119,9 @@
 					{# <button type="button" class="btn btn-secondary col-2  btnDelete">Delete</button> #}
 					{# Début rôle #}
 					{#  container ou il y a ma ligne pour intégrer des personnages #}
-						<div
-						class="container col-12" id="container-ajouter"> {# 1ere ligne #}
 
 
-						<div
-							class="row col-12 mt-4" id="container-a-mettre">
-							{# <form method="post" > #}
-							<div class="form-group col-4">
-								<input name="personnage-1" type="text" class="form-control personnageInput" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Personnage">
-								<span class="error">
-									{% if errors.personnage %}
-										{{ errors.personnage }}
-									{% endif %}
-								</span>
-							</div>
-							<div class="form-group col-3">
-								<input name="nom-1" type="text" class="form-control nomInput" id="exampleInputPassword1" placeholder="Nom">
-								<span class="error">
-									{% if errors.nom %}
-										{{ errors.nom }}
-									{% endif %}
-								</span>
-							</div>
-							<div class="form-group col-3">
-								<input name="prenom-1" type="text" class="form-control prenomInput" id="exampleInputPassword1" placeholder="Prenom">
-								<span class="error">
-									{% if errors.prenom %}
-										{{ errors.prenom }}
-									{% endif %}
-								</span>
-							</div>
-							{# <button type="button" class="btn btn-secondary col-2  btnDelete">Delete</button> #}
-							{# </form> #}
-							<div id="nouveauContenu" class="row col-12 mt-4"></div>
-						</div>
-
-
-					</div>
-
-
-					<div class="col-12 d-flex justify-content-center mt-5">
-						<button type="submit" name="create" class="btn btn-primary">Creer</button>
-						<button type="submit" name="create" class="btn btn-primary">Creer</button>
+						<div class="col-12 d-flex justify-content-center mt-5"> <button type="submit" name="create" class="btn btn-primary">Creer</button>
 					</div>
 				</form>
 			</div>
