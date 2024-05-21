@@ -1,34 +1,35 @@
-/* body {
-   color: rgb(226, 226, 240);
-   background-color: black;
-   font-family: 'Ubuntu', sans-serif;
-   margin: 0px;
-} */
+body {
+   position: relative;
+   min-height: 100vh;
+   padding-bottom: 40px;
+   /* Hauteur du footer */
+}
 
-header,
-footer {
+no-x-scroll {
+   overflow-x: hidden;
+}
+
+header {
    width: 100%;
    margin-bottom: 20px;
 }
 
 footer {
-   position: fixed;
-   bottom: 0px;
+   position: absolute;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   height: 40px;
+   /* Hauteur du footer */
+   color: white;
+   text-align: center;
+   line-height: 40px;
 }
-
-
 
 /* Centrer les images dans la colonne de droite */
 .carousel-item img {
-   margin: 30px auto;
-   /* Centrage horizontal */
-   width: 250px;
-   /* Largeur spécifique */
-   height: 350px;
-   /* Hauteur spécifique */
-   object-fit: cover;
-   /* Redimensionnement sans déformation */
-   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.8);
+   width: 200px;
+   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.8);
    /* Ombre tout autour */
 }
 
@@ -47,7 +48,6 @@ footer {
    /* Déplacer le bouton "Next" vers la gauche */
 }
 
-.vertical-line {
-   border-left: 10px solid red;
-   height: 100%;
+a {
+   text-decoration: none !important;
 }

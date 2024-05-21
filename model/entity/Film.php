@@ -2,7 +2,7 @@
 
 namespace Model\entity;
 
-use Model\entity\Role;
+use Exception;
 
 class Film
 {
@@ -11,16 +11,11 @@ class Film
     private $realisateur;
     private $affiche;
     private $annee;
-    private array $roles;
+    private $roles = [];
 
-    public function __construct(
-        int $idFilm =  null,
-        string $titre,
-        string $realisateur,
-        string $affiche,
-        string $annee,
-        array $roles
-    ) {
+    public function __construct(?int $idFilm, string $titre, string $realisateur, string $affiche, string $annee, array $roles)
+
+    {
         $this->setIdFilm($idFilm);
         $this->setTitre($titre);
         $this->setRealisateur($realisateur);
@@ -64,7 +59,12 @@ class Film
      */
     public function setTitre($titre)
     {
-        $this->titre = $titre;
+        if (isset($titre) && !empty($titre)) {
+
+            $this->titre = $titre;
+        } else {
+            throw new Exception("Le champ n'est pas correct.", 7);
+        }
 
         return $this;
     }
@@ -84,7 +84,12 @@ class Film
      */
     public function setRealisateur($realisateur)
     {
-        $this->realisateur = $realisateur;
+        if (isset($realisateur) && !empty($realisateur)) {
+
+            $this->realisateur = $realisateur;
+        } else {
+            throw new Exception("Le champ n'est pas rempli correctement", 6);
+        }
 
         return $this;
     }
@@ -104,7 +109,13 @@ class Film
      */
     public function setAffiche($affiche)
     {
-        $this->affiche = $affiche;
+        $regex = '/\bhttps?:\/\/(?:www\.)?[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,})+(?:\/[^\s]*)?|\bwww\.[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,})+(?:\/[^\s]*)?/i';
+        if (isset($affiche) && !empty($affiche) && preg_match($regex, $affiche)) {
+
+            $this->affiche = $affiche;
+        } else {
+            throw new Exception("Le champ doit être rempli", 5);
+        }
 
         return $this;
     }
@@ -122,15 +133,18 @@ class Film
      *
      * @return  self
      */
+
     public function setAnnee($annee)
     {
-        $this->annee = $annee;
-
-        return $this;
+        if (isset($annee) && !empty($annee) && is_numeric($annee) && strlen($annee) === 4) {
+            return $this->annee = $annee;
+        } else {
+            throw new Exception("L'année n'est pas dans le bon format.", 4);
+        }
     }
 
     /**
-     * Get the value of role
+     * Get the value of roles
      */
     public function getRoles()
     {
@@ -138,11 +152,11 @@ class Film
     }
 
     /**
-     * Set the value of role
+     * Set the value of roles
      *
      * @return  self
      */
-    public function setRoles(array $roles)
+    public function setRoles($roles)
     {
         $this->roles = $roles;
 

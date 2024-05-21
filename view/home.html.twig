@@ -1,68 +1,49 @@
-<body>
-	{% if user%}
-		{{"Bienvenue git i"}}
-	{% else %}
-		{{"Connectez-vous pour créer un film"}}
-	{% endif %}
-
-	<div class="container mt-5">
-		<div class="row">
-			<div
-				class="col">
-
-				<!-- Carrousel -->
-				<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-					<div class="carousel-inner">
-						{% for film in films %}
-							<!-- Première diapositive -->
-							<div class="carousel-item {% if loop.first %}active{% endif %}">
-								<div class="row">
-									<div class="col-md-6">
-										<h2>{{ film.getTitre }}</h2>
-										<p>Réalisé en
-											<strong>{{ film.getAnnee }}</strong>
-											par
-											<strong>{{ film.getRealisateur }}</strong>
+<div class="container mt-5">
+	<div class="row">
+		<div class="col">
+			<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-inner pb-4">
+					{% for film in films %}
+						<div class="carousel-item {% if loop.first %}active{% endif %}">
+							<div class="row">
+								<div class="col-md-5">
+									<h2>{{ film.titre }}</h2>
+									<p>Réalisé en
+										<strong>{{ film.annee }}</strong>
+										par
+										<strong>{{ film.realisateur }}</strong>
+									</p>
+									{% for role in film.roles %}
+										<p>avec
+											<strong>{{ role.acteur.prenom }}</strong>
+											<strong>{{ role.acteur.nom }}</strong>
+											dans le rôle de
+											<strong>{{ role.personnage }}</strong>
 										</p>
-										{% for film in films %}
-											<p>avec
-												<strong>{{ film.role.acteur.getPrenom }}</strong>
-												<strong>{{ film.role.acteur.getNom }}</strong>
-												dans le rôle de
-												<strong>{{ film.role.getPersonnage }}</strong>
-
-											</p>
-										{% endfor %}
-									</div>
-									<div class="col-md-6">
-										<img src="{{ film.getAffiche }}" class="rounded" alt="{{ film.getTitre }}">
-									</div>
+									{% endfor %}
+								</div>
+								<div class="col-md-6 text-center">
+									<img src="{{ film.getAffiche }}" class="img-fluid w-50 rounded" alt="{{ film.getTitre }}">
 								</div>
 							</div>
-						{% endfor %}
-					</div>
-					<!-- Contrôles du carrousel -->
-					<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Previous</span>
-					</button>
-					<button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Next</span>
-					</button>
+						</div>
+					{% endfor %}
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
-	<!-- Boutons Previous et Next centrés -->
-	<div class="row mt-3 justify-content-center">
-		<div class="col-auto">
-			<button class="btn btn-primary" type="button" onclick="prevSlide()">Previous</button>
-		</div>
-		<div class="col-auto">
-			<button class="btn btn-primary" type="button" onclick="nextSlide()">Next</button>
-		</div>
+<!-- Boutons Previous et Next centrés -->
+<div class="row mt-3 justify-content-center col-12">
+	<div class="col-auto">
+		<button class="btn btn-success mt-5" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+			Previous
+		</button>
 	</div>
-
-</body>
+	<div class="col-auto">
+		<button class="btn btn-success mt-5" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+			Next
+		</button>
+	</div>
+</div></body>
