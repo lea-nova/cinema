@@ -66,6 +66,15 @@ if (isset($_POST["cmd_valid"])) {
 }
 
 
-
-
-echo $twig->render('compte.html.twig', ["user" => $user, "msgEmail" => $msgEmail, "msgMDP" => $msgMDP]);
+echo $twig->render(
+    'compte.html.twig',
+    [
+        "user" => $user,
+        "msgEmail" => $msgEmail,
+        "msgMDP" => $msgMDP,
+        "errorUsername" => $errorUsername,
+        "errorEmail" => $errorEmail,
+        "errorPassword" => $errorPassword,
+        "errorConfirmPassword" => $errorConfirmPassword
+    ]
+);
