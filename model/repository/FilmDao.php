@@ -53,7 +53,7 @@ class FilmDao extends Dao
         ));
         $data = $query->fetch();
         $roles = array();
-        $acteurs = array();
+        // $acteur = array();
 
         // Vérifiez que des données ont été récupérées
         if ($data && is_array($data)) {
