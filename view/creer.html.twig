@@ -4,11 +4,22 @@
 	{% endif %}
 </span>
 <br>
+<span class="error">
+	{% if errors.autre %}
+		{{ errors.autre }}
+	{% endif %}
+</span>
+<br>
 <div class="container col-10">
 	<form class="row g-3" method="post" action="creer">
 		<div class="col-md-6">
 			<label for="titre" class="form-label">Titre</label>
 			<input name="titre" type="text" class="form-control" id="titre">
+			<span class="error">
+				{% if errors.titre %}
+					{{ errors.titre }}
+				{% endif %}
+			</span>
 			<span class="error">
 				{% if errors.titre %}
 					{{ errors.titre }}
@@ -23,6 +34,11 @@
 					{{ errors.annee }}
 				{% endif %}
 			</span>
+			<span class="error">
+				{% if errors.annee %}
+					{{ errors.annee }}
+				{% endif %}
+			</span>
 		</div>
 		<div class="col-md-12">
 			<label for="affiche" class="form-label">Affiche</label>
@@ -32,10 +48,20 @@
 					{{ errors.affiche }}
 				{% endif %}
 			</span>
+			<span class="error">
+				{% if errors.affiche %}
+					{{ errors.affiche }}
+				{% endif %}
+			</span>
 		</div>
 		<div class="col-md-6">
 			<label for="realisateur" class="form-label">Réalisateur</label>
 			<input name="realisateur" type="text" class="form-control" id="realisateur">
+			<span class="error">
+				{% if errors.realisateur %}
+					{{ errors.realisateur }}
+				{% endif %}
+			</span>
 			<span class="error">
 				{% if errors.realisateur %}
 					{{ errors.realisateur }}
@@ -62,56 +88,97 @@
 			<span>
 				<button id="btnAdd" class="btn btn-secondary ">Ajouter</button>
 			</span>
-		</div>
-		{# Début rôle #}
-		{#  container ou il y a ma ligne pour intégrer des personnages #}
-		<div
-			class="container col-12" id="container-ajouter">
-			{# 1ere ligne #}
-
-
-			<div
-				class="row col-12 mt-4" id="container-a-mettre">
-				{# <form method="post" > #}
-				<div class="form-group col-4">
-					<input name="personnage-1" type="text" class="form-control personnageInput" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Personnage">
-					<span class="error">
-						{% if errors.personnage %}
-							{{ errors.personnage }}
-						{% endif %}
-					</span>
-				</div>
-				<div class="form-group col-3">
-					<input name="nom-1" type="text" class="form-control nomInput" id="exampleInputPassword1" placeholder="Nom">
-					<span class="error">
-						{% if errors.nom %}
-							{{ errors.nom }}
-						{% endif %}
-					</span>
-				</div>
-				<div class="form-group col-3">
-					<input name="prenom-1" type="text" class="form-control prenomInput" id="exampleInputPassword1" placeholder="Prenom">
-					<span class="error">
-						{% if errors.prenom %}
-							{{ errors.prenom }}
-						{% endif %}
-					</span>
-				</div>
-				{# <button type="button" class="btn btn-secondary col-2  btnDelete">Delete</button> #}
-				{# </form> #}
-				<div id="nouveauContenu" class="row col-12 mt-4"></div>
+			<div class="col-8">
+				<span>Rôle(s)</span>
+				<span>
+					<button id="btnAdd" class="btn btn-secondary ">Ajouter</button>
+				</span>
 			</div>
+			{# Début rôle #}
+			{#  container ou il y a ma ligne pour intégrer des personnages #}
+			<div
+				class="container col-12" id="container-ajouter">
+				{# 1ere ligne #}
 
 
-		</div>
+				<div
+					class="row col-12 mt-4" id="container-a-mettre">
+					{# <form method="post" > #}
+					<div class="form-group col-4">
+						<input name="personnage-1" type="text" class="form-control personnageInput" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Personnage">
+						<span class="error">
+							{% if errors.personnage %}
+								{{ errors.personnage }}
+							{% endif %}
+						</span>
+					</div>
+					<div class="form-group col-3">
+						<input name="nom-1" type="text" class="form-control nomInput" id="exampleInputPassword1" placeholder="Nom">
+						<span class="error">
+							{% if errors.nom %}
+								{{ errors.nom }}
+							{% endif %}
+						</span>
+					</div>
+					<div class="form-group col-3">
+						<input name="prenom-1" type="text" class="form-control prenomInput" id="exampleInputPassword1" placeholder="Prenom">
+						<span class="error">
+							{% if errors.prenom %}
+								{{ errors.prenom }}
+							{% endif %}
+						</span>
+					</div>
+					{# <button type="button" class="btn btn-secondary col-2  btnDelete">Delete</button> #}
+					{# Début rôle #}
+					{#  container ou il y a ma ligne pour intégrer des personnages #}
+						<div
+						class="container col-12" id="container-ajouter"> {# 1ere ligne #}
 
-		<div class="col-12 d-flex justify-content-center mt-5">
-			<button type="submit" name="create" class="btn btn-primary">Creer</button>
-		</div>
-	</form>
-</div>
-<script>
-	var boutonAjouterDiv = document.getElementById("ajouterDiv");
+
+						<div
+							class="row col-12 mt-4" id="container-a-mettre">
+							{# <form method="post" > #}
+							<div class="form-group col-4">
+								<input name="personnage-1" type="text" class="form-control personnageInput" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Personnage">
+								<span class="error">
+									{% if errors.personnage %}
+										{{ errors.personnage }}
+									{% endif %}
+								</span>
+							</div>
+							<div class="form-group col-3">
+								<input name="nom-1" type="text" class="form-control nomInput" id="exampleInputPassword1" placeholder="Nom">
+								<span class="error">
+									{% if errors.nom %}
+										{{ errors.nom }}
+									{% endif %}
+								</span>
+							</div>
+							<div class="form-group col-3">
+								<input name="prenom-1" type="text" class="form-control prenomInput" id="exampleInputPassword1" placeholder="Prenom">
+								<span class="error">
+									{% if errors.prenom %}
+										{{ errors.prenom }}
+									{% endif %}
+								</span>
+							</div>
+							{# <button type="button" class="btn btn-secondary col-2  btnDelete">Delete</button> #}
+							{# </form> #}
+							<div id="nouveauContenu" class="row col-12 mt-4"></div>
+						</div>
+
+
+					</div>
+
+
+					<div class="col-12 d-flex justify-content-center mt-5">
+						<button type="submit" name="create" class="btn btn-primary">Creer</button>
+						<button type="submit" name="create" class="btn btn-primary">Creer</button>
+					</div>
+				</form>
+			</div>
+			<script>
+				var boutonAjouterDiv = document.getElementById("ajouterDiv");
 var containerParent = document.getElementById("nouveauContenu");
 
 boutonAjouterDiv.addEventListener("click", function () {
@@ -128,4 +195,4 @@ class = "row col-12 mt-4" > {
 
 containerParent.appendChild(nouveauDiv);
 });
-</script>
+			</script>
