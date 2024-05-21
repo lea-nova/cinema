@@ -109,7 +109,8 @@ class Film
      */
     public function setAffiche($affiche)
     {
-        if (isset($affiche) && !empty($affiche)) {
+        $regex = '/\bhttps?:\/\/(?:www\.)?[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,})+(?:\/[^\s]*)?|\bwww\.[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,})+(?:\/[^\s]*)?/i';
+        if (isset($affiche) && !empty($affiche) && preg_match($regex, $affiche)) {
 
             $this->affiche = $affiche;
         } else {
