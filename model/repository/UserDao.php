@@ -11,7 +11,7 @@ class UserDao extends Dao
     //Récupérer toutes les items
     public static  function getAll(string $recherche = ""): array
     {
-        $query = self::$bdd->prepare(" SELECT * FROM utilisateur");
+        $query = self::$bdd->prepare("SELECT * FROM utilisateur");
         $query->execute(array(":title" => $recherche));
         $user = array();
         while ($data = $query->fetch()) {
