@@ -26,7 +26,6 @@ $routes = [
     'delete' => './controller/delete.php',
     'update' => './controller/update.php',
     'compte' => './controller/compte.php',
-    'rechercher' => './controller/rechercher.php'
 ];
 
 $controller = isset($_GET['action']) ?  $_GET['action'] : '/';

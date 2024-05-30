@@ -1,12 +1,6 @@
 <?php
 
-use Model\entity\Film;
-use Model\entity\Role;
-use Model\entity\Acteur;
 use Model\repository\FilmDao;
-
-// $_POST['search'] = "test";
-
 
 $role = new FilmDao();
 $film = new FilmDao();

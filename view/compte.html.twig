@@ -10,25 +10,26 @@
 					<form action="compte" method="post">
 						<div class="mb-3">
 							<label for="username" class="form-label">Nom d'utilisateur</label>
-							<input type="text" class="form-control" name="username" id="username" placeholder="{{ username }}">
-							{{errorUsername}}
+							<input type="text" class="form-control" name="username" id="username" placeholder="{{ username }}" value="{{ values.username}}">
+							{{errors.username}}
 						</div>
 						<div class="mb-3">
 							<label for="email" class="form-label">Email</label>
-							<input type="email" class="form-control" name="email" id="email" placeholder="{{email}}">
-							{{errorEmail}}
+							<input type="email" class="form-control" name="email" id="email" placeholder="{{email}}" value="{{values.email}}">
+							{{errors.email}}
 						</div>
 						<div class="mb-3">
 							<label for="password" class="form-label">Mot de passe</label>
-							<input type="password" class="form-control" name="password" id="password" placeholder="{{password}}">
-							{{errorPassword}}
+							<input type="password" class="form-control" name="password" id="password" placeholder="{{password}}" value="{{values.password}}">
+							{{errors.password}}
 						</div>
 						<div class="mb-3">
 							<label for="confirm_password" class="form-label">Confirmer le mot de passe</label>
-							<input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirmer le mot de passe">
-							{{errorConfirmPassword}}
+							<input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirmer le mot de passe" value="{{values.confirm_password}}">
+							{{errors.confirm_password}}
 						</div>
 						<button type="submit" class="btn btn-success" name="submit">Inscription</button>
+						{{errors.general}}
 					</form>
 				</div>
 			</div>
@@ -45,13 +46,13 @@
 				<form action="compte" method="post">
 					<div class="mb-3">
 						<label for="login_email" class="form-label">Email</label>
-						<input type="email" class="form-control" id="login_email" name="login_email" placeholder="{{email}}">
-						{{msgEmail}}
+						<input type="email" class="form-control" id="login_email" name="login_email" placeholder="{{login_email}}" value="{{values.login_email}}">
+						{{errors.login_email}}
 					</div>
 					<div class="mb-3">
 						<label for="login_password" class="form-label">Mot de passe</label>
-						<input type="password" class="form-control" id="login_password" name="login_password" placeholder="{{password}}">
-						{{msgMDP}}
+						<input type="password" class="form-control" id="login_password" name="login_password" placeholder="{{login_password}}" value="{{values.login_password}}">
+						{{errors.login_password}}
 					</div>
 					<button type="submit" class="btn btn-success" name="cmd_valid">Login</button>
 				</form>

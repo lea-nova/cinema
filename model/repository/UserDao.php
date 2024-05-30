@@ -45,19 +45,21 @@ class UserDao extends Dao
         return $insert->execute($value);
     }
 
-    public static function checkLogin($email, $password)
+    // checker si les infos fournis par l'utlisateur correspondent aux infos de la base de données
+    public static function checkLogin(User $user)
     {
         $query = self::$bdd->prepare("SELECT * from utilisateur where email = :email");
-        $query->bindParam(":email", $email);
+        $query->bindValue(":email", $user->getEmail());
         $query->execute();
-        $user = $query->fetch();
-        if ($user && password_verify($password, $user["password"])) {
+        $dbUser = $query->fetch();
+        if ($dbUser && password_verify($user->getPassword(), $dbUser["password"])) {
             return true;
         } else {
             return false;
         }
     }
 
+    // récupérer l'username dans la table utilisateur
     public static function getbyUsername($email): Object
     {
         $query = self::$bdd->prepare('SELECT username from utilisateur WHERE email = :email');

@@ -1,66 +1,86 @@
 <?php
 
-
 use Model\entity\User;
 use Model\repository\UserDao;
 
 $user = null;
-$msgEmail = "";
-$msgMDP = "";
-$errorUsername = "";
-$errorEmail = "";
-$errorPassword = "";
-$errorConfirmPassword = "";
+$errors = [];
+$values = [
+    'username' => '',
+    'email' => '',
+    'password' => '',
+    'confirm_password' => '',
+    'login_email' => '',
+    'login_password' => ''
+];
 $userDao = new UserDao();
 
-if (isset($_POST["submit"])) {
-    if (empty($_POST['username'])) {
-        $errorUsername = "Le champs username est requis";
+if (isset($_POST["submit"])) { //bouton inscription
+    // $values[..] reçoit les valeurs saisies par user
+    $values['username'] = $_POST['username'];
+    $values['email'] = $_POST['email'];
+    $values['password'] = $_POST['password'];
+    $values['confirm_password'] = $_POST['confirm_password'];
+
+    if (empty($values['username'])) {
+        $errors['username'] = "Le champs est requis";
     }
-    if (empty($_POST['email'])) {
-        $errorEmail = "Le champs email est requis";
+    if (empty($values['email'])) {
+        $errors['email'] = "Le champs est requis";
     }
-    if (empty($_POST["password"])) {
-        $errorPassword = "Le champs mot de passe est requis";
+    if (empty($values['password'])) {
+        $errors['password'] = "Le champs est requis";
     }
-    if (empty($_POST["confirm_password"])) {
-        $errorConfirmPassword = "Veuillez confirmer votre mot de passe";
+    if (empty($values['confirm_password'])) {
+        $errors['confirm_password'] = "Veuillez confirmer votre mot de passe";
     }
 
-    if (!empty($_POST['username']) || !empty($_POST['email']) || !empty($_POST['password']) || !empty($_POST['confirm_password'])) {
-        if (!preg_match('/^[a-zA-Z0-9]+$/', $_POST['username'])) {
-            $errorUsername = "Ne doit contenir que des lettres et des chiffres sans espace.";
-        } else if (!preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $_POST['email'])) {
-            $errorEmail = "L'adresse email n'est pas valide.";
-        } else if (strlen($_POST["password"]) < 4) {
-            $errorPassword = "Le mot de passe doit contenir au moins 4 caractères.";
-        } else if ($_POST["password"] !== $_POST["confirm_password"]) {
-            $errorConfirmPassword = "Le mot de passe ne correspond pas.";
+    if (!empty($values['username']) && !empty($values['email']) && !empty($values['password']) && !empty($values['confirm_password'])) {
+        if (!preg_match('/^[a-zA-Z0-9]+$/', $values['username'])) {
+            $errors['username'] = "Ne doit contenir que des lettres et des chiffres sans espace.";
+        } else if (!preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $values['email'])) {
+            $errors['email'] = "L'adresse email n'est pas valide.";
+        } else if (strlen($values["password"]) < 4) {
+            $errors['password'] = "Le mot de passe doit contenir au moins 4 caractères.";
+        } else if ($values["password"] !== $values["confirm_password"]) {
+            $errors['confirm_password'] = "Le mot de passe ne correspond pas.";
         } else {
-            $user = new User(null, $_POST['username'], $_POST['email'], $_POST['password']);
+            $user = new User(null, $values['username'], $values['email'], $values['password']);
             $status = $userDao::addOne($user);
-            $_SESSION["username"] = $user->getUsername();
-            setcookie('id', $_POST["username"], time() + 60);
-            header("location: home");
+            if ($status) {
+                $_SESSION["username"] = $user->getUsername();
+                // setcookie('id', $values["username"], time() + 60);
+                header("Location: home");
+                exit();
+            } else {
+                // Gérer le cas où la création de l'utilisateur échoue
+                $errors['general'] = "Une erreur est survenue lors de l'inscription.";
+            }
         }
     }
 }
 
-if (isset($_POST["cmd_valid"])) {
-    if (empty($_POST["login_email"])) {
-        $msgEmail = "Le champs email est obligatoire";
+if (isset($_POST["cmd_valid"])) { // bouton Login
+    $values['login_email'] = $_POST['login_email'];
+    $values['login_password'] = $_POST['login_password'];
+
+    if (empty($values["login_email"])) {
+        $errors['login_email'] = "Le champs est obligatoire";
     }
-    if (empty($_POST["login_password"])) {
-        $msgMDP = "Le champs mot de passe est obligatoire";
+    if (empty($values["login_password"])) {
+        $errors['login_password'] = "Le champs est obligatoire";
     }
 
-    if (!empty($_POST["login_email"]) && !empty($_POST["login_password"])) {
-        if ($userDao::checkLogin($_POST["login_email"], $_POST["login_password"])) {
-            $_SESSION["username"] = $userDao::getbyUsername($_POST["login_email"])->getUsername();
-            setcookie('id', $_POST["login_email"], time() + 60);
+    if (!empty($values["login_email"]) && !empty($values["login_password"])) {
+        $user = new User(null, null, $values["login_email"], $values["login_password"]);
+        if ($userDao::checkLogin($user)) {
+            $_SESSION["username"] = $userDao::getbyUsername($values["login_email"])->getUsername();
+            // setcookie('id', $values["login_email"], time() + 60);
             header("location:home");
         } else {
-            $msgEmail = "Erreur d'identification";
+            $values['login_email'] = '';
+            $values['login_password'] = '';
+            $errors['login_email'] = "Email ou mot de passe incorrect.";
         }
     }
 }
@@ -70,11 +90,7 @@ echo $twig->render(
     'compte.html.twig',
     [
         "user" => $user,
-        "msgEmail" => $msgEmail,
-        "msgMDP" => $msgMDP,
-        "errorUsername" => $errorUsername,
-        "errorEmail" => $errorEmail,
-        "errorPassword" => $errorPassword,
-        "errorConfirmPassword" => $errorConfirmPassword
+        "errors" => $errors,
+        "values" => $values
     ]
 );
