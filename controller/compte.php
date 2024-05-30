@@ -35,7 +35,7 @@ if (isset($_POST["submit"])) { //bouton inscription
         $errors['confirm_password'] = "Veuillez confirmer votre mot de passe";
     }
 
-    if (!empty($values['username']) && !empty($values['email']) && !empty($values['password']) && !empty($values['confirm_password'])) {
+    if (!empty($values['username']) || !empty($values['email']) || !empty($values['password']) || !empty($values['confirm_password'])) {
         if (!preg_match('/^[a-zA-Z0-9]+$/', $values['username'])) {
             $errors['username'] = "Ne doit contenir que des lettres et des chiffres sans espace.";
         } else if (!preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $values['email'])) {
