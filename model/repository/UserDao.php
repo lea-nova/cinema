@@ -27,7 +27,7 @@ class UserDao extends Dao
 
 
     //Récupérer plus d'info sur 1 item à l'aide de son id
-    public static function getOne($id): Object
+    public static function getOne(int $id): Object
     {
         $query = self::$bdd->prepare('SELECT * from utilisateur WHERE id = :id');
         $query->execute(array(':id' => $id));
@@ -35,14 +35,29 @@ class UserDao extends Dao
         return new User($data['id'], $data['username'], $data['email'], $data['password']);
     }
 
+    //Vérifie si l'email existe
+    public static function emailExists(string $email): bool
+    {
+        $query = 'SELECT COUNT(*) FROM utilisateur WHERE email = :email';
+        $stmt = self::$bdd->prepare($query);
+        $stmt->execute(['email' => $email]);
+        return $stmt->fetchColumn() > 0;
+    }
+
     //Ajouter un item
     public static function addOne(Object $data): bool
     {
-        $hashed_password = password_hash($data->getPassword(), PASSWORD_BCRYPT);
-        $query = 'INSERT INTO utilisateur (username, email, password) VALUES (:username, :email, :password)';
-        $value = ['username' => $data->getUsername(), 'email' => $data->getEmail(), 'password' => $hashed_password];
-        $insert = self::$bdd->prepare($query);
-        return $insert->execute($value);
+        $emailNotExist = true;
+        if (self::emailExists($data->getEmail())) {
+            $emailNotExist = false; // L'email existe déjà
+        } else {
+            $hashed_password = password_hash($data->getPassword(), PASSWORD_BCRYPT);
+            $query = 'INSERT INTO utilisateur (username, email, password) VALUES (:username, :email, :password)';
+            $value = ['username' => $data->getUsername(), 'email' => $data->getEmail(), 'password' => $hashed_password];
+            $insert = self::$bdd->prepare($query);
+            $insert->execute($value);
+        }
+        return $emailNotExist;
     }
 
     // checker si les infos fournis par l'utlisateur correspondent aux infos de la base de données
@@ -60,7 +75,7 @@ class UserDao extends Dao
     }
 
     // récupérer l'username dans la table utilisateur
-    public static function getbyUsername($email): Object
+    public static function getByEmail(string $email): Object
     {
         $query = self::$bdd->prepare('SELECT username from utilisateur WHERE email = :email');
         $query->execute(array(':email' => $email));

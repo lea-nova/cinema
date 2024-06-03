@@ -54,6 +54,7 @@ if (isset($_POST["submit"])) { //bouton inscription
                 exit();
             } else {
                 // Gérer le cas où la création de l'utilisateur échoue
+                $errors["email"] = "L'email existe déjà";
                 $errors['general'] = "Une erreur est survenue lors de l'inscription.";
             }
         }
@@ -74,7 +75,7 @@ if (isset($_POST["cmd_valid"])) { // bouton Login
     if (!empty($values["login_email"]) && !empty($values["login_password"])) {
         $user = new User(null, null, $values["login_email"], $values["login_password"]);
         if ($userDao::checkLogin($user)) {
-            $_SESSION["username"] = $userDao::getbyUsername($values["login_email"])->getUsername();
+            $_SESSION["username"] = $userDao::getByEmail($values["login_email"])->getUsername();
             // setcookie('id', $values["login_email"], time() + 60);
             header("location:home");
         } else {
